@@ -2,25 +2,21 @@ import React from 'react';
 import {View} from 'react-native';
 import {Container,Header,Title,Content,Button,Left,Right,Body,Icon,Text} from 'native-base';
 
-export default class HomeScreen extends React.Component {
+export default class NotificationScreen extends React.Component {
     render() {
       return (
         
         <Container>
         <Header>
-          <Left>
-            <Button transparent onPress={()=>this.props.navigation.navigate("Foody")}>
-              <Icon name='add' />
-            </Button>
-          </Left>
+            <Left />
           <Body>
-            <Title>Kesfet</Title>
+            <Title>Bildirimler</Title>
           </Body>
           <Right />
         </Header>
-        <Content>
+        <Content style={{paddingTop:20,paddingLeft:20}}>
           <Text>
-            This is Content Section
+           Bildirim Ekrani
           </Text>
         </Content>
         
@@ -28,4 +24,3 @@ export default class HomeScreen extends React.Component {
       );
     }
   }
-
