@@ -2,21 +2,25 @@ import React from 'react';
 import {View} from 'react-native';
 import {Container,Header,Title,Content,Button,Left,Right,Body,Icon,Text} from 'native-base';
 
-export default class Profile extends React.Component {
+export default class SignUpScreen extends React.Component {
     render() {
       return (
         
         <Container>
         <Header>
-          {/* <Left /> */}
+          <Left>
+            <Button transparent onPress={()=>this.props.navigation.navigate("Foody")}>
+              <Icon name='add' />
+            </Button>
+          </Left>
           <Body>
             <Title>Kesfet</Title>
           </Body>
-          {/* <Right /> */}
+          <Right />
         </Header>
         <Content>
           <Text>
-            Prifil Ekrani
+            This is Content Section
           </Text>
         </Content>
         
