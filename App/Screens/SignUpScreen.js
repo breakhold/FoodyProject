@@ -1,15 +1,15 @@
 import React from 'react';
 import {View,StyleSheet} from 'react-native';
 import {Container,Header,Title,Content,Button,Left,Right,Body,Icon,Text,Item,Input} from 'native-base';
-
-export default class SignUpScreen extends React.Component {
+import { connect } from 'react-redux';
+import {RegisterChanged} from '../Actions'
+class SignUpScreen extends React.Component {
     render() {
       return (
         
         <Container>
         <Header>
           <Left>
-            
           </Left>
           <Body>
             <Title>Uye Ol</Title>
@@ -23,8 +23,8 @@ export default class SignUpScreen extends React.Component {
               Isim
           </Text>
           <Item rounded >
-          <Input  placeholder='Kullanıcı Adı'/>
-        
+          <Input value={this.props.name} onChangeText={password1 => this.props.RegisterChanged({props:'name',value:password1})}/>
+
           </Item>
           <Text >
               SoyIsim
@@ -74,3 +74,15 @@ export default class SignUpScreen extends React.Component {
    },
    
   });
+
+  const mapStateToProps = ({RegisterResponse}) =>{
+      const {name,surname,username,email,password}= RegisterResponse;
+      return{
+        name,
+          surname,
+          username,email,password
+      };
+  };
+
+
+  export default connect(mapStateToProps,{RegisterChanged})(SignUpScreen)

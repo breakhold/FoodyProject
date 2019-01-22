@@ -5,6 +5,7 @@ import { navigate } from '../Services/Navigator';
 import qs from 'qs';
 
 export const LoginChanged = ({ props, value }) => {
+  
   return (dispatch) => {
     dispatch({
       type: LOGIN_CHANGE,

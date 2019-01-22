@@ -1,9 +1,4 @@
 rootProject.name = 'Foody'
-<<<<<<< HEAD
-include ':react-native-gesture-handler'
-project(':react-native-gesture-handler').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-gesture-handler/android')
-=======
->>>>>>> fcaa1d7c8888d78cb825dbb020125892b67a8d71
 include ':react-native-vector-icons'
 project(':react-native-vector-icons').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-vector-icons/android')
 include ':react-native-gesture-handler'

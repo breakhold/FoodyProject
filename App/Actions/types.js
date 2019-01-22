@@ -9,6 +9,7 @@ export const REGISTER_CREATE_SUCCESS='register_create_success';
 export const REGISTER_CREATE_FAILED='register_create_failed';
 export const REGISTER_CREATE_FAILED_EMAIL='register_create_failed_email';
 
+
 export const MEMBER_INFORMATION='member_information';
 export const MEMBER_INFORMATION_DATA_SUCCESS='member_information_data_success';
 export const MEMBER_INFORMATION_LOADING='member_information_loading';

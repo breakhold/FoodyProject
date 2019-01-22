@@ -137,10 +137,6 @@ android {
 }
 
 dependencies {
-<<<<<<< HEAD
-    compile project(':react-native-gesture-handler')
-=======
->>>>>>> fcaa1d7c8888d78cb825dbb020125892b67a8d71
     compile project(':react-native-vector-icons')
     compile project(':react-native-gesture-handler')
     implementation fileTree(dir: "libs", include: ["*.jar"])

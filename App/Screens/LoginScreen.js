@@ -2,7 +2,7 @@ import React from 'react';
 import {View,StyleSheet,findNodeHandle} from 'react-native';
 import {Container,Item,Input,Header,Title,Content,Button,Left,Right,Thumbnail,  Body,Icon,Text,Image} from 'native-base';
 import {connect} from 'react-redux'
-import {LoginChanged,LoginMember} from '../Actions/LoginActions';
+import {LoginChanged,LoginMember} from '../Actions';
 import Spinner from 'react-native-loading-spinner-overlay';
 // import { BlurView } from 'react-native-blur';
 class LoginScreen extends React.Component {
