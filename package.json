@@ -12,7 +12,6 @@
     "qs": "^6.6.0",
     "react": "16.6.3",
     "react-native": "0.57.8",
-    "react-native-blur": "^3.2.2",
     "react-native-gesture-handler": "^1.0.12",
     "react-native-loading-spinner-overlay": "^1.0.1",
     "react-native-typography": "^1.4.0",

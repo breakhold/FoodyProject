@@ -4,6 +4,7 @@ import NotificationScreen from './Screens/NotificationScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import LoginScreen from './Screens/LoginScreen';
 import SignUpScreen from './Screens/SignUpScreen';
+import SignUpSecondScreen from './Screens/SignUpSecondScreen'
 import {createStackNavigator,createAppContainer,createBottomTabNavigator,createSwitchNavigator} from 'react-navigation';
 import Ionicons,{HomeIconWithBadge,} from 'react-native-vector-icons/Ionicons';
 import React from 'react';
@@ -33,6 +34,7 @@ const HomeStack = createStackNavigator({
 const LoginStack = createStackNavigator({
   Login: LoginScreen,
   SignUp: SignUpScreen,
+  SignUpSecond : SignUpSecondScreen
 },
 {
   headerMode: 'none',
