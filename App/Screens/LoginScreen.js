@@ -21,18 +21,12 @@ class LoginScreen extends React.Component {
        console.log(this.props.loading);
       return (
         <Container style={{justifyContent:"center"}}>
-        <LinearGradient colors={['blue','red']} style={{flex:1}}
-        useAngle={true} angle={-45} angleCenter= {{ x: 0.5, y: 0.5}}>
+        <LinearGradient colors={['blue','red']} style={{flex:1}} useAngle={true} angle={-45} angleCenter= {{ x: 0.5, y: 0.5}}>
         <Content style = {{paddingTop:100,paddingLeft:60,paddingRight:60}}>
         
         <Thumbnail  style={{alignSelf:"center"}} large source={{ uri: 'https://lh5.googleusercontent.com/p/AF1QipP58meJjsw3dokiDtVyZNozyUiuvHIW0W0ak3cU=w319-h160-k-no' }} />
 
-          <Text style={styles.loginText}>
-              Kullanici Adi
-          </Text>
-          <Item rounded style={styles.loginInput} >
-          <Input  value={this.props.username} onChangeText={username1 =>this.props.LoginChanged({ props: 'username', value: username1 })} placeholderTextColor='#fff'  placeholder='Kullanıcı Adı'/>
-        
+         
       <Form style={{paddingTop:80}}>
           <Item  >
           <Input 
@@ -67,27 +61,16 @@ class LoginScreen extends React.Component {
             </Text>
             </Button>
             </Form>
-
-
-               <Form style={{
-                 
+               <Form style={{     
       borderWidth: 0.5,
     borderColor:'white',
       textAlign:'center',
       marginTop:20
   }}/> 
 <Form style={{flexDirection:'row',justifyContent:"space-around",paddingLeft:20,paddingRight:20,paddingTop:30} }>
-
-
           <Icon color='black'  style={{color:'#fff'}} bordered  name='logo-facebook' />    
           <Icon color='black'  style={{color:'#fff'}} bordered  name='logo-google' />    
-
 </Form>
-
-
-
-           
-       
         </Content>
         </LinearGradient>
       </Container>
