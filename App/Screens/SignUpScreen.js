@@ -5,7 +5,6 @@ import {Container,Header,Title,Content,Button,Left,Right,Body,Icon,Text} from 'n
 export default class SignUpScreen extends React.Component {
     render() {
       return (
-        
         <Container>
         <Header>
           <Left>
@@ -14,7 +13,7 @@ export default class SignUpScreen extends React.Component {
             </Button>
           </Left>
           <Body>
-            <Title>This screen for the signup asd ad sa sa asd .</Title>
+            <Title>This screen for signup.</Title>
           </Body>
           <Right />
         </Header>

@@ -1,6 +1,7 @@
 import HomeScreen from './Screens/HomeScreen';
 import DetailsScreen from './Screens/DetailsScreen';
 import NotificationScreen from './Screens/NotificationScreen';
+import AuthLoadingScreen from './Screens/AuthLoadingScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import LoginScreen from './Screens/LoginScreen';
 import SignUpScreen from './Screens/SignUpScreen';
@@ -57,9 +58,9 @@ const TabNavigator = createBottomTabNavigator({
   );
 
 export const SwitchNavigator = createSwitchNavigator({
-
+  AuthLoading:AuthLoadingScreen,
   Login: LoginStack,
-  HomeTab: TabNavigator,
+  App: TabNavigator
   
 })
 

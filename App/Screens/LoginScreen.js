@@ -6,8 +6,6 @@ import {LoginChanged,LoginMember} from '../Actions/LoginActions';
 import Spinner from 'react-native-loading-spinner-overlay';
 // import { BlurView } from 'react-native-blur';
 class LoginScreen extends React.Component {
-    
-    
     renderButton()
       {
           
@@ -15,12 +13,11 @@ class LoginScreen extends React.Component {
       }
       _signIn () {
         const {username, password}=this.props;
-        console.log(username+password);
         this.props.LoginMember({username,password});
       };
       
     render() {
-        console.log(this.props.loading)
+       console.log(this.props.loading);
       return (
         
         <Container style={{justifyContent:"center",paddingTop:100}}>
@@ -29,7 +26,6 @@ class LoginScreen extends React.Component {
         
         <Thumbnail  style={{marginLeft:130,marginBottom:10}} large source={{ uri: 'https://lh5.googleusercontent.com/p/AF1QipP58meJjsw3dokiDtVyZNozyUiuvHIW0W0ak3cU=w319-h160-k-no' }} />
 
-        
           <Text style={styles.loginText}>
               Kullanici Adi
           </Text>
