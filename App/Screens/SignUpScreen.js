@@ -6,13 +6,15 @@ import {RegisterChanged} from '../Actions'
 class SignUpScreen extends React.Component {
     render() {
       return (
-        
         <Container>
         <Header>
           <Left>
           </Left>
           <Body>
+            <Title>This screen for signup.</Title>
+
             <Title>Uye Ol</Title>
+
           </Body>
           <Right >
           
