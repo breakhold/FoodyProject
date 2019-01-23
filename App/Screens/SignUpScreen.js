@@ -14,7 +14,7 @@ export default class SignUpScreen extends React.Component {
             </Button>
           </Left>
           <Body>
-            <Title>This screen for the signup.</Title>
+            <Title>This screen for the signup asd ad sa sa asd .</Title>
           </Body>
           <Right />
         </Header>
