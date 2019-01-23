@@ -1,9 +1,10 @@
 import React from 'react';
 import {View,StyleSheet,findNodeHandle} from 'react-native';
-import {Container,Item,Input,Header,Title,Content,Button,Left,Right,Thumbnail,  Body,Icon,Text,Image} from 'native-base';
+import {Container,Item,Input,Header,Title,Content,Button,Left,Right,Thumbnail,  Body,Icon,Text,Image,Form, Row} from 'native-base';
 import {connect} from 'react-redux'
 import {LoginChanged,LoginMember} from '../Actions';
 import Spinner from 'react-native-loading-spinner-overlay';
+import LinearGradient from 'react-native-linear-gradient';
 // import { BlurView } from 'react-native-blur';
 class LoginScreen extends React.Component {
     
@@ -22,54 +23,72 @@ class LoginScreen extends React.Component {
     render() {
         console.log(this.props.loading)
       return (
+        <Container style={{justifyContent:"center"}}>
+        <LinearGradient colors={['blue','red']} style={{flex:1}}
         
-        <Container style={{justifyContent:"center",paddingTop:100}}>
+        useAngle={true} angle={-45} angleCenter= {{ x: 0.5, y: 0.5}}>
+        <Content style = {{paddingTop:100,paddingLeft:60,paddingRight:60}}>
+        
+        <Thumbnail  style={{alignSelf:"center"}} large source={{ uri: 'https://lh5.googleusercontent.com/p/AF1QipP58meJjsw3dokiDtVyZNozyUiuvHIW0W0ak3cU=w319-h160-k-no' }} />
 
-        <Content>
-        
-        <Thumbnail  style={{marginLeft:130,marginBottom:10}} large source={{ uri: 'https://lh5.googleusercontent.com/p/AF1QipP58meJjsw3dokiDtVyZNozyUiuvHIW0W0ak3cU=w319-h160-k-no' }} />
-
-        
-          <Text style={styles.loginText}>
-              Kullanici Adi
-          </Text>
-          <Item rounded style={styles.loginInput} >
-          <Input  value={this.props.username} onChangeText={username1 =>this.props.LoginChanged({ props: 'username', value: username1 })} placeholderTextColor='#fff'  placeholder='Kullanıcı Adı'/>
-        
+      <Form style={{paddingTop:80}}>
+          <Item  >
+          <Input 
+          style={{textAlign:"center",color:'#fff'}}
+           value={this.props.username} onChangeText={username1 =>this.props.LoginChanged({ props: 'username', value: username1 })} placeholderTextColor='#fff'  placeholder='Kullanıcı Adı'/>
+          
           </Item>
-          <Text style={styles.loginText}>
-              Sifre
-          </Text>
-                
-          <Item rounded style={styles.loginInput} >    
-          <Input secureTextEntry value={this.props.password} onChangeText={password1=>this.props.LoginChanged({props:'password',value:password1})} placeholderTextColor='#fff' placeholder='Şifre'/>
+      
+          <Item   >    
+          <Input 
+          style={{textAlign:"center",color:'#fff'}}
+          secureTextEntry value={this.props.password} onChangeText={password1=>this.props.LoginChanged({props:'password',value:password1})} placeholderTextColor='#fff' placeholder='Şifre'/>
           </Item>
+          </Form>
           <Spinner
                 visible={this.props.loading}
                 overlayColor={'rgba(0, 0, 0, 0.65)'}
                 size="large"
                 animation="fade"
               />
-           <Button full iconLeft rounded style={styles.loginButton} onPress={this._signIn.bind(this)}  >
-          <Icon style={{color:'white'}} name='arrow-forward' /> 
-          <Text style={{color:'white'}}>GİRİŞ YAP</Text>
-          </Button>
-          <Button full iconLeft rounded style={styles.loginButton}  >
-          <Icon style={{color:'white'}} name='arrow-forward' /> 
-          <Text style={{color:'white'}}>FACEBOOKLA BAGLAN</Text>
-          </Button>
-          <Button full iconLeft rounded style={styles.loginButton} >
-          <Icon style={{color:'white'}} name='arrow-forward' /> 
-          <Text style={{color:'white'}}>GOOGLELA BAGLAN</Text>
-          </Button>
-          <Button full iconLeft rounded style={styles.loginButton} onPress={()=>this.props.navigation.navigate("SignUp")} >
-          <Icon style={{color:'white'}} name='arrow-forward' /> 
-          <Text style={{color:'white'}}>UYE OL</Text>
 
-          </Button>
+            <Form style={{flexDirection:'row',paddingTop:50,justifyContent:"space-between"}}>
+            <Button  style={{borderColor:'#fff',paddingLeft:10,paddingRight:10}}  bordered rounded onPress={this._signIn.bind(this)} >
+            <Text style={{color:'#fff'}}>
+              Giris Yap
+            </Text>
+            </Button>
+            <Button  style={{borderColor:'#fff',paddingLeft:10,paddingRight:10}}  bordered rounded  onPress={()=>this.props.navigation.navigate("SignUp")}>
+            <Text style={{color:'#fff'}}>
+              Uye Ol
+            </Text>
+            </Button>
+            </Form>
+
+
+               <Form style={{
+                 
+      borderWidth: 0.5,
+    borderColor:'white',
+      textAlign:'center',
+      marginTop:20
+  }}/> 
+<Form style={{flexDirection:'row',justifyContent:"space-around",paddingLeft:20,paddingRight:20,paddingTop:30} }>
+
+
+          <Icon color='black'  style={{color:'#fff'}} bordered  name='logo-facebook' />    
+          <Icon color='black'  style={{color:'#fff'}} bordered  name='logo-google' />    
+
+</Form>
+
+
+
+           
+       
         </Content>
-        
+        </LinearGradient>
       </Container>
+      
       );
     }
   }
@@ -91,10 +110,7 @@ class LoginScreen extends React.Component {
         marginLeft:20,
 
     },
-    loginInput :{
-        marginLeft:20,
-        marginRight:20
-    },
+  
     spinner:{
         marginBottom:250,  
     }
