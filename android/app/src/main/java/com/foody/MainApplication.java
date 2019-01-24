@@ -3,6 +3,7 @@ package com.foody;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 
 import com.oblador.vectoricons.VectorIconsPackage;
 
@@ -32,6 +33,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactNativeLocalizationPackage(),
             new VectorIconsPackage(),
             new RNGestureHandlerPackage()   );
             new LinearGradientPackage(),

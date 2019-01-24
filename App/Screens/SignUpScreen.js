@@ -9,55 +9,57 @@ class SignUpScreen extends React.Component {
       return (
         <Container style={{justifyContent:"center"}}>
         <LinearGradient colors={['#ff8383','#d3d7ff','#ffbaba','#C5D5FF']} style={{flex:1}} useAngle={true} angle={-45} angleCenter= {{ x: 2, y: 0.5}}>
-        <Content style = {{paddingTop:100,paddingLeft:60,paddingRight:60}}>
+        <View style={{flex:0.1}}></View>
         
-        
-         
-      <Form style={{paddingTop:30,alignItems:"center"}}>
-        <Item>
+        <Item  style={{flex:0.1,justifyContent:'center'}}>
             <Text style={{fontSize:30}}>
                 UYE OL
             </Text>
         </Item>
-        <Item style={{paddingTop:40,borderColor:'#000000'}}>
+        <View style={{flex:0.05}}></View>
+            <Form style={{alignItems:"center",flex:0.35,paddingTop:'5%',paddingLeft:'8%',paddingRight:'12%',justifyContent:'space-between'}}>
+        <Item style={{borderColor:'#000000'}}>
           <Input 
           style={{textAlign:"center",color:'#000000'}}
             placeholderTextColor='#000000'  placeholder='Isim'/>
         
-          </Item>
-          <Item style={{paddingTop:20,borderColor:'#000000'}}>
+        </Item>
+          <Item style={{borderColor:'#000000'}}>
           <Input 
           style={{textAlign:"center",color:'#000000'}}
             placeholderTextColor='#000000'  placeholder='Soyisim'/>
         
           </Item>
-          <Item style={{paddingTop:20,borderColor:'#000000'}}>
+          <Item style={{borderColor:'#000000'}}>
           <Input 
           style={{textAlign:"center",color:'#000000'}}
             placeholderTextColor='#000000'  placeholder='Email'/>
         
           </Item>
         
-          <Item style={{paddingTop:20,borderColor:'#000000'}}  >    
+          <Item style={{borderColor:'#000000'}}  >    
           <Input 
           style={{textAlign:"center",color:'#48009A'}}
           secureTextEntry  placeholderTextColor='#000000' placeholder='Şifre'/>
           </Item>
-          <Item style={{paddingTop:60}}>
-          <Button iconRight style={{backgroundColor:'#48009A',paddingRight:5,paddingLeft:5}}   rounded >
+          </Form>
+         
+            <View style={{flex:0.2}}/>
+            <View style={{flex:0.2,flexDirection:'row',justifyContent:"flex-end",paddingRight:'5%'}}><Button iconRight style={{backgroundColor:'#48009A'}}  onPress={()=> this.props.navigation.navigate("New")} rounded >
             <Text style={{color:'#fff'}}>
               Devam Et
             </Text>
             <Icon name='arrow-round-forward'/>
-            </Button>
-            </Item>
-          </Form>
+            </Button></View>
+          
+           
+
           
 
             
                
 
-        </Content>
+        
         </LinearGradient>
       </Container>
       );
