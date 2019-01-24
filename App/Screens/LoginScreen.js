@@ -26,12 +26,6 @@ class LoginScreen extends React.Component {
         <Content style = {{paddingTop:100,paddingLeft:60,paddingRight:60}}>
         
         <Thumbnail  style={{alignSelf:"center"}} large source={{ uri: 'https://lh5.googleusercontent.com/p/AF1QipP58meJjsw3dokiDtVyZNozyUiuvHIW0W0ak3cU=w319-h160-k-no' }} />
-
-          <Text style={styles.loginText}>
-              Kullanici Adi
-          </Text>
-          <Item rounded style={styles.loginInput} >
-          <Input  value={this.props.username} onChangeText={username1 =>this.props.LoginChanged({ props: 'username', value: username1 })} placeholderTextColor='#fff'  placeholder='Kullanıcı Adı'/>
         
       <Form style={{paddingTop:80}}>
           <Item  >

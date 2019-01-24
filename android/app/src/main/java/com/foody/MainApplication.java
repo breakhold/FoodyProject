@@ -28,18 +28,17 @@ public class MainApplication extends Application implements ReactApplication {
       return BuildConfig.DEBUG;
     }
 
-    @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new VectorIconsPackage(),
-            new RNGestureHandlerPackage()   );
-            new LinearGradientPackage(),
-            new VectorIconsPackage(),
-            new RNGestureHandlerPackage()
-      );
+      
+return Arrays.<ReactPackage>asList(
 
-    }
+ new MainReactPackage(),
+
+ new VectorIconsPackage(),
+        new LinearGradientPackage(),
+  new RNGestureHandlerPackage()   );
+
+ }
 
     @Override
     protected String getJSMainModuleName() {
