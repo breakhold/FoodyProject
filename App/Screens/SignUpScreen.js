@@ -4,6 +4,7 @@ import {Container,Header,Form,Title,Content,Button,Left,Right,Body,Icon,Text,Ite
 import { connect } from 'react-redux';
 import {RegisterChanged} from '../Actions'
 import LinearGradient from 'react-native-linear-gradient'
+import strings from './Localizations'
 class SignUpScreen extends React.Component {
     render() {
       return (
@@ -13,7 +14,7 @@ class SignUpScreen extends React.Component {
         
         <Item  style={{flex:0.1,justifyContent:'center'}}>
             <Text style={{fontSize:30}}>
-                UYE OL
+                {strings.signIn.toUpperCase}
             </Text>
         </Item>
         <View style={{flex:0.05}}></View>
@@ -21,33 +22,34 @@ class SignUpScreen extends React.Component {
         <Item style={{borderColor:'#000000'}}>
           <Input 
           style={{textAlign:"center",color:'#000000'}}
-            placeholderTextColor='#000000'  placeholder='Isim'/>
+            placeholderTextColor='#000000'  placeholder={strings.name}/>
         
         </Item>
           <Item style={{borderColor:'#000000'}}>
           <Input 
           style={{textAlign:"center",color:'#000000'}}
-            placeholderTextColor='#000000'  placeholder='Soyisim'/>
+            placeholderTextColor='#000000'  placeholder={strings.surname}/>
         
           </Item>
           <Item style={{borderColor:'#000000'}}>
           <Input 
           style={{textAlign:"center",color:'#000000'}}
-            placeholderTextColor='#000000'  placeholder='Email'/>
+            placeholderTextColor='#000000'  placeholder={strings.email}/>
         
           </Item>
         
           <Item style={{borderColor:'#000000'}}  >    
           <Input 
           style={{textAlign:"center",color:'#48009A'}}
-          secureTextEntry  placeholderTextColor='#000000' placeholder='Şifre'/>
+          secureTextEntry  placeholderTextColor='#000000' placeholder={strings.password}/>
           </Item>
           </Form>
          
             <View style={{flex:0.2}}/>
-            <View style={{flex:0.2,flexDirection:'row',justifyContent:"flex-end",paddingRight:'5%'}}><Button iconRight style={{backgroundColor:'#48009A'}}  onPress={()=> this.props.navigation.navigate("New")} rounded >
+            <View style={{flex:0.2,flexDirection:'row',justifyContent:"flex-end",paddingRight:'5%'}}>
+            <Button iconRight style={{backgroundColor:'#48009A'}}  onPress={()=> this.props.navigation.navigate("New")} rounded >
             <Text style={{color:'#fff'}}>
-              Devam Et
+              {strings.continue}
             </Text>
             <Icon name='arrow-round-forward'/>
             </Button></View>

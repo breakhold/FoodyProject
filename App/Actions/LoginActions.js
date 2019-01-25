@@ -27,7 +27,7 @@ export const LoginMember=({username,password})=>{
    
     if(username=='' || password=='')
     {
-      Alert.alert("Tüm alanları doldurunuz.");
+      
       dispatch({
         type:LOGIN_USER_FAILED
       })
