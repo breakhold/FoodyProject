@@ -19,14 +19,7 @@ class LoginScreen extends React.Component {
   componentWillMount(){
     //It worked in english for me i forced to work in Turkish please remove under this line
     strings.setLanguage('tr');
-  }
-  componentDidMount() {
-    setInterval(() => {
-      this.setState({
-        loading: !this.props.loading
-      });
-    }, 3000);
-  }
+  }  
   render() {
     console.log(this.props.loading);
     return (
