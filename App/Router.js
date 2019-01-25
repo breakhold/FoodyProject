@@ -5,7 +5,8 @@ import AuthLoadingScreen from './Screens/AuthLoadingScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import LoginScreen from './Screens/LoginScreen';
 import SignUpScreen from './Screens/SignUpScreen';
-import SignUpSecondScreen from './Screens/SignUpSecondScreen'
+import SignUpSecondScreen from './Screens/SignUpSecondScreen';
+import NewScreen  from './Screens/NewScreen';
 import {createStackNavigator,createAppContainer,createBottomTabNavigator,createSwitchNavigator} from 'react-navigation';
 import Ionicons,{HomeIconWithBadge,} from 'react-native-vector-icons/Ionicons';
 import React from 'react';
@@ -21,6 +22,7 @@ import FoodyScreen from './Screens/FoodyScreen';
 //       initialRouteName: 'Home',
 //     }
 //   );
+
 const HomeStack = createStackNavigator({
     
     Home: HomeScreen,
@@ -35,7 +37,8 @@ const HomeStack = createStackNavigator({
 const LoginStack = createStackNavigator({
   Login: LoginScreen,
   SignUp: SignUpScreen,
-  SignUpSecond : SignUpSecondScreen
+  SignUpSecond : SignUpSecondScreen,
+  New:NewScreen
 },
 {
   headerMode: 'none',

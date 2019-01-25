@@ -6,88 +6,31 @@ import { LoginChanged, LoginMember } from '../Actions';
 import Spinner from 'react-native-loading-spinner-overlay';
 import LinearGradient from 'react-native-linear-gradient';
 import Hr from "react-native-hr-component";
+import strings from '../Localizations';
+// import strings from '../Localizations'
 // import Hr from 'react-native-hr'
 // import { BlurView } from 'react-native-blur';
 class LoginScreen extends React.Component {
-<<<<<<< HEAD
-    renderButton()
-      {
-          
-         
-      }
-      _signIn () {
-        const {username, password}=this.props;
-        this.props.LoginMember({username,password});
-      };
-      
-    render() {
-       console.log(this.props.loading);
-      return (
-        <Container style={{justifyContent:"center"}}>
-        <LinearGradient colors={['blue','red']} style={{flex:1}}
-        useAngle={true} angle={-45} angleCenter= {{ x: 0.5, y: 0.5}}>
-        <Content style = {{paddingTop:100,paddingLeft:60,paddingRight:60}}>
-        
-        <Thumbnail  style={{alignSelf:"center"}} large source={{ uri: 'https://lh5.googleusercontent.com/p/AF1QipP58meJjsw3dokiDtVyZNozyUiuvHIW0W0ak3cU=w319-h160-k-no' }} />
-        
-      <Form style={{paddingTop:80}}>
-          <Item  >
-          <Input 
-          style={{textAlign:"center",color:'#fff'}}
-           value={this.props.username} onChangeText={username1 =>this.props.LoginChanged({ props: 'username', value: username1 })} placeholderTextColor='#fff'  placeholder='Kullanıcı Adı'/>
-          
-
-          </Item>
-      
-          <Item   >    
-          <Input 
-          style={{textAlign:"center",color:'#fff'}}
-          secureTextEntry value={this.props.password} onChangeText={password1=>this.props.LoginChanged({props:'password',value:password1})} placeholderTextColor='#fff' placeholder='Şifre'/>
-          </Item>
-          </Form>
-          <Spinner
-                visible={this.props.loading}
-                overlayColor={'rgba(0, 0, 0, 0.65)'}
-                size="large"
-                animation="fade"
-              />
-
-            <Form style={{flexDirection:'row',paddingTop:50,justifyContent:"space-between"}}>
-            <Button  style={{borderColor:'#fff',paddingLeft:10,paddingRight:10}}  bordered rounded onPress={this._signIn.bind(this)} >
-            <Text style={{color:'#fff'}}>
-              Giris Yap
-            </Text>
-            </Button>
-            <Button  style={{borderColor:'#fff',paddingLeft:10,paddingRight:10}}  bordered rounded  onPress={()=>this.props.navigation.navigate("SignUp")}>
-            <Text style={{color:'#fff'}}>
-              Uye Ol
-            </Text>
-            </Button>
-            </Form>
-
-
-               <Form style={{
-                 
-      borderWidth: 0.5,
-    borderColor:'white',
-      textAlign:'center',
-      marginTop:20
-  }}/> 
-<Form style={{flexDirection:'row',justifyContent:"space-around",paddingLeft:20,paddingRight:20,paddingTop:30} }>
-=======
-  renderButton() {
->>>>>>> upstream/master
-
-
-  }
   _signIn() {
     const { username, password } = this.props;
     this.props.LoginMember({ username, password });
   };
-
+  
+  componentWillMount(){
+    //It worked in english for me i forced to work in Turkish please remove under this line
+    strings.setLanguage('tr');
+  }
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        loading: !this.props.loading
+      });
+    }, 3000);
+  }
   render() {
     console.log(this.props.loading);
     return (
+        
       <Container style={{ justifyContent: "center"}}>
         <LinearGradient colors={['blue', 'red']} style={{flex:1}} useAngle={true} angle={-45} angleCenter={{ x: 0.5, y: 0.5 }}>
           <Content style={{ paddingTop: '20%', marginLeft: '10%', marginRight: '11%',flex:1 }}>
@@ -98,37 +41,38 @@ class LoginScreen extends React.Component {
               <Item  >
                 <Input
                   style={{ textAlign: "center", color: '#fff' }}
-                  value={this.props.username} onChangeText={username1 => this.props.LoginChanged({ props: 'username', value: username1 })} placeholderTextColor='#fff' placeholder='Kullanıcı Adı' />
+                  value={this.props.username} onChangeText={username1 => this.props.LoginChanged({ props: 'username', value: username1 })} placeholderTextColor='#fff' placeholder={strings.username}/>
 
               </Item>
+             
               <Item   >
                 <Input
                   style={{ textAlign: "center", color: '#fff' }}
-                  secureTextEntry value={this.props.password} onChangeText={password1 => this.props.LoginChanged({ props: 'password', value: password1 })} placeholderTextColor='#fff' placeholder='Şifre' />
+                  secureTextEntry value={this.props.password} onChangeText={password1 => this.props.LoginChanged({ props: 'password', value: password1 })} placeholderTextColor='#fff' placeholder={strings.password} />
               </Item>
             </Form>
-            {/* <Spinner
+             <Spinner
               visible={this.props.loading}
               overlayColor={'rgba(0, 0, 0, 0.65)'}
               size="large"
               animation="fade"
-            /> */}
+            /> 
 
-            <Form style={{ flexDirection: 'row', paddingTop: '15%',paddingLeft:'2%',paddingRight:'2%',flex:0.2,justifyContent: "space-between" }}>
-              <Button style={{ borderColor: '#fff' }} bordered rounded onPress={this._signIn.bind(this)} >
+            <Form style={{ flexDirection: 'row', paddingTop: '15%',paddingLeft:'2%',paddingRight:'2%',flex:0.2,justifyContent:'space-around' }}>
+              <Button style={{ borderColor: '#fff'}} bordered rounded onPress={this._signIn.bind(this)} >
                 <Text style={{ color: '#fff' }}>
-                  Giris Yap
+                  {strings.signIn}
                 </Text>
               </Button>
               <Button style={{ borderColor: '#fff' }} bordered rounded onPress={() => this.props.navigation.navigate("SignUp")}>
                 <Text style={{ color: '#fff' }}>
-                  Uye Ol
+                  {strings.signUp}
             </Text>
               </Button>
 
             </Form>
-            <Form style={{ paddingTop:20,flex:0.05,paddingBottom:30}}>
-              <Hr lineColor="#eee" width={1} text="Ya da" textStyles={styles.customStylesHere} />
+            <Form style={{ paddingLeft:'2%',paddingRight:'2%',flex:0.05,paddingTop:30,paddingBottom:30}}>
+              <Hr lineColor="#eee" width={1} text={strings.or} textStyles={styles.customStylesHere} />
             </Form>
 
             <Form style={{ flexDirection: 'row', paddingTop:30,justifyContent: "center",flex:0.3 }}>
