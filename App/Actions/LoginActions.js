@@ -1,9 +1,23 @@
 import {Alert,AsyncStorage} from 'react-native';
 import axios from 'axios';
-import {LOGIN_CHANGE,LOGIN_USER,LOGIN_USER_SUCCESS, LOGIN_USER_FAILED, REGISTER_CREATE_FAILED, REGISTER_CREATE_SUCCESS} from './types';
+import {LOGIN_CHANGE,LOGIN_WITH_FACEBOOK_SUCCESS,LOGIN_USER,LOGIN_USER_SUCCESS, LOGIN_USER_FAILED, REGISTER_CREATE_FAILED, REGISTER_CREATE_SUCCESS} from './types';
 import { navigate } from '../Services/Navigator';
 import qs from 'qs';
 import {LOGIN_SERVICE_URL} from '../ApiConstants';
+
+export const LoginWithFacebook = ({value}) =>{
+return(dispatch) =>{
+console.log("helal ")
+  dispatch({
+    type: LOGIN_WITH_FACEBOOK_SUCCESS,
+    payload: { value: value }
+  });
+  if(value){
+    navigate("Home")
+  }
+  
+};
+};
 
 export const LoginChanged = ({ props, value }) => {
   
@@ -13,7 +27,6 @@ export const LoginChanged = ({ props, value }) => {
       payload: { props, value }
     });
     
-
   };
   };
 
@@ -53,9 +66,9 @@ export const LoginMember=({username,password})=>{
       dispatch({
         type:LOGIN_USER_FAILED
       });
-      setTimeout(() => {
-        Alert.alert('Oops!', 'Böyle Bir Kullanıcı Bulunamadı.Lütfen üye olunuz');
-      }, 100);
+      // setTimeout(() => {
+      //   Alert.alert('Oops!', 'Böyle Bir Kullanıcı Bulunamadı.Lütfen üye olunuz');
+      // }, 100);
 
       console.log(error);
     });;

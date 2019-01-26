@@ -13,7 +13,7 @@ class SignUpScreen extends React.Component {
         <View style={{flex:0.1}}></View>
         
         <Item  style={{flex:0.1,justifyContent:'center'}}>
-            <Text style={{fontSize:30}}>
+            <Text style={{fontFamily:'Quicksand-Regular',fontSize:30}}>
                 {strings.signIn.toUpperCase}
             </Text>
         </Item>
@@ -21,26 +21,27 @@ class SignUpScreen extends React.Component {
             <Form style={{alignItems:"center",flex:0.35,paddingTop:'5%',paddingLeft:'8%',paddingRight:'12%',justifyContent:'space-between'}}>
         <Item style={{borderColor:'#000000'}}>
           <Input 
-          style={{textAlign:"center",color:'#000000'}}
+          style={{fontFamily:'Quicksand-Regular',textAlign:"center",color:'#000000'}}
             placeholderTextColor='#000000'  placeholder={strings.name}/>
         
         </Item>
           <Item style={{borderColor:'#000000'}}>
           <Input 
-          style={{textAlign:"center",color:'#000000'}}
+          style={{fontFamily:'Quicksand-Regular',textAlign:"center",color:'#000000'}}
             placeholderTextColor='#000000'  placeholder={strings.surname}/>
         
           </Item>
           <Item style={{borderColor:'#000000'}}>
           <Input 
-          style={{textAlign:"center",color:'#000000'}}
+          keyboardType="email-address"
+          style={{fontFamily:'Quicksand-Regular',textAlign:"center",color:'#000000'}}
             placeholderTextColor='#000000'  placeholder={strings.email}/>
         
           </Item>
         
           <Item style={{borderColor:'#000000'}}  >    
           <Input 
-          style={{textAlign:"center",color:'#48009A'}}
+          style={{fontFamily:'Quicksand-Regular',textAlign:"center",color:'#48009A'}}
           secureTextEntry  placeholderTextColor='#000000' placeholder={strings.password}/>
           </Item>
           </Form>
@@ -48,7 +49,7 @@ class SignUpScreen extends React.Component {
             <View style={{flex:0.2}}/>
             <View style={{flex:0.2,flexDirection:'row',justifyContent:"flex-end",paddingRight:'5%'}}>
             <Button iconRight style={{backgroundColor:'#48009A'}}  onPress={()=> this.props.navigation.navigate("New")} rounded >
-            <Text style={{color:'#fff'}}>
+            <Text style={{fontFamily:'Quicksand-Regular',color:'#fff'}}>
               {strings.continue}
             </Text>
             <Icon name='arrow-round-forward'/>

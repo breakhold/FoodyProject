@@ -1,17 +1,31 @@
 import React from 'react';
-import { View, StyleSheet, findNodeHandle } from 'react-native';
+import { View, StyleSheet, findNodeHandle,TouchableOpacity } from 'react-native';
 import { Container, Item, Input, Header, Title, Content, Button, Left, Right, Thumbnail, Body, Icon, Text, Image, Form, Row } from 'native-base';
 import { connect } from 'react-redux'
-import { LoginChanged, LoginMember } from '../Actions';
+import { LoginChanged, LoginMember,LoginWithFacebook } from '../Actions';
 import Spinner from 'react-native-loading-spinner-overlay';
 import LinearGradient from 'react-native-linear-gradient';
 import Hr from "react-native-hr-component";
 import strings from './Localizations';
+import {AccessToken,LoginManager,GraphRequestManager ,GraphRequest} from 'react-native-fbsdk';
 import Fonts from '../Utils/Fonts'
 // import strings from '../Localizations'
 // import Hr from 'react-native-hr'
 // import { BlurView } from 'react-native-blur';
+
 class LoginScreen extends React.Component {
+  componentWillMount(){
+    console.log(AccessToken)
+    AccessToken.getCurrentAccessToken().then(
+      (data) => {
+        if(data) {
+        //ana sayfaya gonder
+        }
+       }
+    )
+  }
+
+  
 renderInfoText(){
   if(this.props.isTried && this.props.password && this.props.username){
     return(
@@ -82,15 +96,69 @@ renderInfoText(){
     const { username, password } = this.props;
     this.props.LoginMember({ username, password });
   };
+   
   
-  componentWillMount(){
-    // const isnull = 0;
-    //It worked in english for me i forced to work in Turkish please remove under this line
-    // strings.setLanguage('tr');
+  handleFacebookLogin () {
+    let result1=null
+    LoginManager.logInWithReadPermissions(['public_profile', 'email', 'user_friends']).then(
+      
+      function (result) {
+        if (result.isCancelled) {
+          console.log('Login cancelled')
+        } else {
+          
+          console.log('Login success with permissions: ' + result.grantedPermissions.toString())
+          AccessToken
+        .getCurrentAccessToken()
+        .then((data) => {
+          let accessToken = data.accessToken
+          alert(accessToken.toString())
+
+          const responseInfoCallback = (error, result) => {
+            result1 = result
+            if (error) {
+              console.log(error)
+              // alert('Error fetching data: ' + error.toString());
+            } else {
+             
+              let email  = result["email"].toString();
+               console.log(email)
+              if(email){
+                  this.props.LoginWithFacebook.bind(this)
+                  ///burda hata var
+              }
+            }
+          }
+         
+          const infoRequest = new GraphRequest('/me',
+          {
+            accessToken: accessToken,
+            parameters: {
+              fields: {
+                string: 'email,first_name,middle_name,last_name,picture.type(large)',
+              }
+            }
+          }
+          , responseInfoCallback);
+
+          // Start the graph request.
+          new GraphRequestManager()
+            .addRequest(infoRequest)
+            .start()
+           
+        })
+        
+    }
+  },
+      function (error) {  
+        console.log('Login fail with error: ' + error)
+      }
+
+    )
   }
-  
   render() {
-    console.log(this.props.loading);
+    
+    
     return (
       
       <Container style={{ justifyContent: "center"}}>
@@ -107,12 +175,12 @@ renderInfoText(){
               {this.renderInfoText()}
               </View>
             </Form>
-            {/* <Spinner
+            <Spinner
               visible={this.props.loading}
               overlayColor={'rgba(0, 0, 0, 0.65)'}
               size="large"
               animation="fade"
-            /> */}
+            />
 
             <Form style={{ flexDirection: 'row', paddingTop: '15%',paddingLeft:'2%',paddingRight:'2%',flex:0.2,justifyContent:'space-around' }}>
               <Button style={{ borderColor: '#fff'}} bordered rounded onPress={this._signIn.bind(this)} >
@@ -132,9 +200,15 @@ renderInfoText(){
             </Form>
 
             <Form style={{ flexDirection: 'row', paddingTop:10,justifyContent: "center",flex:0.3 }}>
-              <Icon color='black' style={{ color: '#fff', paddingRight: 30 }} bordered name='logo-facebook' />
+            <TouchableOpacity onPress={this.handleFacebookLogin() 
+          }>
+              <Icon color='black' style={{ color: '#fff', paddingRight: '20%' }} bordered name='logo-facebook' />
+            </TouchableOpacity >
+            <TouchableOpacity onPress={()=> this.props.LoginWithFacebook()} >
               <Icon color='black' style={{ color: '#fff' }} bordered name='logo-google' />
+              </TouchableOpacity >
             </Form>
+            {/* <Text>{this.props.Facebookname}</Text> */}
           </Content>
         </LinearGradient>
       </Container>
@@ -179,8 +253,8 @@ const mapToStateProps = ({ LoginResponse }) => {
     password,
     loading,
     success,
-    isTried
+    isTried,
   };
 };
 
-export default connect(mapToStateProps, { LoginChanged, LoginMember })(LoginScreen)
+export default connect(mapToStateProps, { LoginChanged, LoginMember,LoginWithFacebook })(LoginScreen)
