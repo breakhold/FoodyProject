@@ -17,6 +17,6 @@ export const MEMBER_UPDATE_CHANGE='member_update_changed';
 
 export const MEMBER_UPDATE_SUCCESS='member_update_success';
 
-
+export const LOGIN_WITH_FACEBOOK_SUCCESS='login_with_facebook';
 export const WEB_SERVICE_URL='http://test3.makinaturkiye.com/api';
 

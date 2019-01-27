@@ -12,6 +12,7 @@ export const RegisterChanged = ({props, value}) =>{
     };
 };
 
+
 export const RegisterFirstStepClick=({name,surname,password,email})=>{
     if(name=='' || surname=='' || password=='' || email==''){
         return(dispatch) =>{
@@ -26,3 +27,4 @@ export const RegisterFirstStepClick=({name,surname,password,email})=>{
 
     
 }
+

@@ -9,6 +9,7 @@ const INITIAL_STATE = {
     email:'',
     password:'',
     isEmpty:false
+
 }
 
 export default (state=INITIAL_STATE,action)=>{
