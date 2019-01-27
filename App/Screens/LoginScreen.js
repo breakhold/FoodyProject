@@ -9,20 +9,23 @@ import Hr from "react-native-hr-component";
 import strings from './Localizations';
 import {AccessToken,LoginManager,GraphRequestManager ,GraphRequest} from 'react-native-fbsdk';
 import Fonts from '../Utils/Fonts'
+import { navigate } from '../Services/Navigator';
 // import strings from '../Localizations'
 // import Hr from 'react-native-hr'
 // import { BlurView } from 'react-native-blur';
 
 class LoginScreen extends React.Component {
   componentWillMount(){
-    console.log(AccessToken)
-    AccessToken.getCurrentAccessToken().then(
-      (data) => {
-        if(data) {
-        //ana sayfaya gonder
-        }
-       }
-    )
+    // console.log(AccessToken)
+    // AccessToken.getCurrentAccessToken().then(
+    //   (data) => {
+    //     if(data) {
+    //     //ana sayfaya gonder
+    //     console.log("giris yapmios")
+    //     LoginManager.logOut();
+    //     }
+    //    }
+    // )
   }
 
   
@@ -99,55 +102,55 @@ renderInfoText(){
    
   
   handleFacebookLogin () {
-    let result1=null
-    LoginManager.logInWithReadPermissions(['public_profile', 'email', 'user_friends']).then(
-      
+
+    LoginManager.logInWithReadPermissions(['public_profile', 'email']).then(
+
       function (result) {
         if (result.isCancelled) {
           console.log('Login cancelled')
         } else {
           
           console.log('Login success with permissions: ' + result.grantedPermissions.toString())
+
           AccessToken
-        .getCurrentAccessToken()
-        .then((data) => {
-          let accessToken = data.accessToken
-          alert(accessToken.toString())
+ .getCurrentAccessToken()
+ .then((data) => {
+   let accessToken = data.accessToken
+   alert(accessToken.toString())
 
-          const responseInfoCallback = (error, result) => {
-            result1 = result
-            if (error) {
-              console.log(error)
-              // alert('Error fetching data: ' + error.toString());
-            } else {
-             
-              let email  = result["email"].toString();
-               console.log(email)
-              if(email){
-                  this.props.LoginWithFacebook.bind(this)
-                  ///burda hata var
-              }
-            }
-          }
-         
-          const infoRequest = new GraphRequest('/me',
-          {
-            accessToken: accessToken,
-            parameters: {
-              fields: {
-                string: 'email,first_name,middle_name,last_name,picture.type(large)',
-              }
-            }
-          }
-          , responseInfoCallback);
+   const responseInfoCallback = (error, result) => {
+     result1 = result
+     if (error) {
+       console.log(error)
+       // alert('Error fetching data: ' + error.toString());
+     } else {
+      
+       let email  = result["email"].toString();
+        console.log(email)
+        navigate("App")
+     }
+   }
+  
+   const infoRequest = new GraphRequest('/me',
+   {
+     accessToken: accessToken,
+     parameters: {
+       fields: {
+         string: 'email,first_name,middle_name,last_name,picture.type(large)',
+       }
+     }
+   }
+   , responseInfoCallback);
 
-          // Start the graph request.
-          new GraphRequestManager()
-            .addRequest(infoRequest)
-            .start()
-           
-        })
-        
+   // Start the graph request.
+   new GraphRequestManager()
+     .addRequest(infoRequest)
+     .start()
+    
+ }) 
+
+      
+
     }
   },
       function (error) {  
@@ -155,7 +158,7 @@ renderInfoText(){
       }
 
     )
-  }
+    }
   render() {
     
     
@@ -191,7 +194,7 @@ renderInfoText(){
               <Button style={{ borderColor: '#fff' }} bordered rounded onPress={() => this.props.navigation.navigate("SignUp")}>
                 <Text style={{ fontFamily:'Quicksand-Regular',color: '#fff' }}>
                   {strings.signUp}
-            </Text>
+            </Text>       
               </Button>
 
             </Form>
@@ -200,11 +203,11 @@ renderInfoText(){
             </Form>
 
             <Form style={{ flexDirection: 'row', paddingTop:10,justifyContent: "center",flex:0.3 }}>
-            <TouchableOpacity onPress={this.handleFacebookLogin() 
-          }>
+            <TouchableOpacity onPress={this.handleFacebookLogin}
+          >
               <Icon color='black' style={{ color: '#fff', paddingRight: '20%' }} bordered name='logo-facebook' />
             </TouchableOpacity >
-            <TouchableOpacity onPress={()=> this.props.LoginWithFacebook()} >
+            <TouchableOpacity >
               <Icon color='black' style={{ color: '#fff' }} bordered name='logo-google' />
               </TouchableOpacity >
             </Form>

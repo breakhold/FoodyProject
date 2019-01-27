@@ -63,6 +63,7 @@ const TabNavigator = createBottomTabNavigator({
   );
 
 export const SwitchNavigator = createSwitchNavigator({
+// AuthLoading:SignUpSecondScreen,
   AuthLoading:AuthLoadingScreen,
   Login: LoginStack,
   App: TabNavigator

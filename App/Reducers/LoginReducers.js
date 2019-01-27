@@ -7,7 +7,7 @@ const INITIAL_STATE={
     loading:false,
     success:false,
     isTried:false,
-    facebookData :''
+
 }
 
 export default (state=INITIAL_STATE,action)=>{
@@ -19,8 +19,7 @@ export default (state=INITIAL_STATE,action)=>{
         case LOGIN_USER_FAILED:
         
         return{...state, loading:false,isTried:true}
-        case LOGIN_WITH_FACEBOOK_SUCCESS:
-        return{...state,facebookData:action.payload.value}
+       
         default:
         return state;
     }

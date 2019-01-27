@@ -4,20 +4,12 @@ import {LOGIN_CHANGE,LOGIN_WITH_FACEBOOK_SUCCESS,LOGIN_USER,LOGIN_USER_SUCCESS, 
 import { navigate } from '../Services/Navigator';
 import qs from 'qs';
 import {LOGIN_SERVICE_URL} from '../ApiConstants';
+import {AccessToken,GraphRequestManager} from 'react-native-fbsdk'
 
-export const LoginWithFacebook = ({value}) =>{
-return(dispatch) =>{
-console.log("helal ")
-  dispatch({
-    type: LOGIN_WITH_FACEBOOK_SUCCESS,
-    payload: { value: value }
-  });
-  if(value){
-    navigate("Home")
-  }
-  
+export const LoginWithFacebook = () =>{
+
 };
-};
+
 
 export const LoginChanged = ({ props, value }) => {
   
@@ -71,7 +63,7 @@ export const LoginMember=({username,password})=>{
       // }, 100);
 
       console.log(error);
-    });;
+    });
   }
 
 
