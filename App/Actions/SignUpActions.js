@@ -1,11 +1,28 @@
-import {REGISTER_CHANGE,REGISTER_CREATE,REGISTER_CREATE_SUCCESS,REGISTER_CREATE_FAILED,REGISTER_CREATE_FAILED_EMAIL} from './types'
+import {REGISTER_CHANGE,REGISTER_CREATE,REGISTER_CREATE_SUCCESS,REGISTER_EVENT_EMPTY,REGISTER_CREATE_FAILED_EMAIL} from './types'
+import { navigate } from '../Services/Navigator';
+
 
 export const RegisterChanged = ({props, value}) =>{
-    console.log(value)
-    return(dispath) =>{
-        dispath({
+    
+    return(dispatch) =>{
+        dispatch({
             type:REGISTER_CHANGE,
             payload: {props, value}
         });
     };
 };
+
+export const RegisterFirstStepClick=({name,surname,password,email})=>{
+    if(name=='' || surname=='' || password=='' || email==''){
+        return(dispatch) =>{
+        dispatch({
+            type:REGISTER_EVENT_EMPTY
+        });
+    };
+    }
+    else{
+            navigate("SignUpSecond");
+    }
+
+    
+}

@@ -5,17 +5,18 @@ const INITIAL_STATE={
     username:'',
     password:'',
     loading:false,
-    success:false
+    success:false,
+    isTried:false
 }
 
 export default (state=INITIAL_STATE,action)=>{
     switch(action.type){
         case LOGIN_CHANGE:
-        return {...state,[action.payload.props]:action.payload.value};
+        return {...state,[action.payload.props]:action.payload.value,isTried:false};
         case LOGIN_USER:
         return{...state,loading:true};
         case LOGIN_USER_FAILED:
-        return{...state, loading:false};
+        return{...state, loading:false,isTried:true};
         default:
         return state;
     }

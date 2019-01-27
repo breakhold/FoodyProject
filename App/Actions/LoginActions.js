@@ -6,7 +6,6 @@ import qs from 'qs';
 import {LOGIN_SERVICE_URL} from '../ApiConstants';
 
 export const LoginChanged = ({ props, value }) => {
-  
   return (dispatch) => {
     dispatch({
       type: LOGIN_CHANGE,
@@ -24,10 +23,8 @@ export const LoginMember=({username,password})=>{
       type:LOGIN_USER
     }); 
 
-   
     if(username=='' || password=='')
     {
-      Alert.alert("Tüm alanları doldurunuz.");
       dispatch({
         type:LOGIN_USER_FAILED
       })
@@ -53,11 +50,12 @@ export const LoginMember=({username,password})=>{
       dispatch({
         type:LOGIN_USER_FAILED
       });
-      setTimeout(() => {
+     /* setTimeout(() => {
         Alert.alert('Oops!', 'Böyle Bir Kullanıcı Bulunamadı.Lütfen üye olunuz');
       }, 100);
 
       console.log(error);
+      */
     });;
   }
 
