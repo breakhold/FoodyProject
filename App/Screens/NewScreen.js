@@ -7,13 +7,9 @@ import LinearGradient from 'react-native-linear-gradient'
 export default class NewScreen extends React.Component {
     render() {
       return (
-        <Container style={{justifyContent:"center",flex:1}}>
-        <Button style={{flex:0.3}}><Text>asdasdasd</Text></Button>
+        <Container style={{justifyContent:"center" ,  flex:1}}  >
 
-        <Button style={{flex:0.5}}><Text>ortaaa</Text></Button>
-
-        <Button style={{flex:0.2}}><Text>soon</Text></Button>
-
+      
       </Container>
       );
     }

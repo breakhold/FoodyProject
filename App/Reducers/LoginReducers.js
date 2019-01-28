@@ -7,7 +7,7 @@ const INITIAL_STATE={
     loading:false,
     success:false,
     isTried:false,
-    facebookData :''
+
 }
 
 export default (state=INITIAL_STATE,action)=>{
