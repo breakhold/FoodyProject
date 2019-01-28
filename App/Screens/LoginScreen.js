@@ -124,7 +124,7 @@ renderInfoText(){
        console.log(error)
        // alert('Error fetching data: ' + error.toString());
      } else {
-      
+      console.log(result)
        let email  = result["email"].toString();
         console.log(email)
         navigate("App")
