@@ -3,16 +3,36 @@ import axios from 'axios';
 import {LOGIN_CHANGE,LOGIN_WITH_FACEBOOK_SUCCESS,LOGIN_USER,LOGIN_USER_SUCCESS, LOGIN_USER_FAILED, REGISTER_CREATE_FAILED, REGISTER_CREATE_SUCCESS} from './types';
 import { navigate } from '../Services/Navigator';
 import qs from 'qs';
-import {LOGIN_SERVICE_URL} from '../ApiConstants';
-import {AccessToken,GraphRequestManager} from 'react-native-fbsdk'
 
-export const LoginWithFacebook = () =>{
+import {LOGIN_SERVICE_URL,LOGIN_FACEBOOK_SERVICE_URL} from '../ApiConstants';
 
-};
-
+export const LoginWithFacebook = ({email,name,surname}) => {
+  return(dispatch)=>{
+    dispatch({
+      type: LOGIN_WITH_FACEBOOK_SUCCESS
+    });
+    if(email){
+      axios.post(LOGIN_FACEBOOK_SERVICE_URL,{Email:email,Name:name,Surname:surname}).then((response)=>{
+         if(response.data.isSuccess){
+           AsyncStorage.setItem('Id',response.data.userId.toString());
+           AsyncStorage.setItem('token',response.data.token);
+           navigate('Home');
+         }
+         else{
+           Alert.alert(response.data.message);
+            
+      
+         }
+       }).catch(function(error){
+           console.log(response.error);
+    
+       });
+      }
+  };
+  
+  };
 
 export const LoginChanged = ({ props, value }) => {
-  
   return (dispatch) => {
     dispatch({
       type: LOGIN_CHANGE,
@@ -29,17 +49,15 @@ export const LoginMember=({username,password})=>{
       type:LOGIN_USER
     }); 
 
-   
     if(username=='' || password=='')
     {
-      
       dispatch({
         type:LOGIN_USER_FAILED
       })
     }
     else{
     axios.post(LOGIN_SERVICE_URL,{userName:username,Password:password}).then((response)=>{
-      console.log(response.data);
+     
       if(response.data.isSuccess){
         AsyncStorage.setItem('Id',response.data.userId.toString());
         AsyncStorage.setItem('token',response.data.token);
@@ -58,11 +76,8 @@ export const LoginMember=({username,password})=>{
       dispatch({
         type:LOGIN_USER_FAILED
       });
-      // setTimeout(() => {
-      //   Alert.alert('Oops!', 'Böyle Bir Kullanıcı Bulunamadı.Lütfen üye olunuz');
-      // }, 100);
-
       console.log(error);
+
     });
   }
 

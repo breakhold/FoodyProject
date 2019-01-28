@@ -17,9 +17,9 @@ export default (state=INITIAL_STATE,action)=>{
         case LOGIN_USER:
         return{...state,loading:true};
         case LOGIN_USER_FAILED:
-        
         return{...state, loading:false,isTried:true}
-       
+        case LOGIN_WITH_FACEBOOK_SUCCESS:
+        return{...state,loading:true}
         default:
         return state;
     }

@@ -32,26 +32,31 @@ private static CallbackManager mCallbackManager = CallbackManager.Factory.create
 protected static CallbackManager getCallbackManager() {
     return mCallbackManager;
 }
+@Override
+  public void onCreate() {
+    super.onCreate();
+    SoLoader.init(this, /* native exopackage */ false);
+    AppEventsLogger.activateApp(this);
+  }
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
     public boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
     }
 
-    @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
+   
+return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new FBSDKPackage(),
             new ReactNativeLocalizationPackage(),
             new VectorIconsPackage(),
-            new RNGestureHandlerPackage()   );
+            new RNGestureHandlerPackage(),
             new LinearGradientPackage(),
-            new VectorIconsPackage(),
-            new RNGestureHandlerPackage()
+      new FBSDKPackage(mCallbackManager)
       );
 
-    }
+
+ }
 
     @Override
     protected String getJSMainModuleName() {
@@ -65,26 +70,6 @@ protected static CallbackManager getCallbackManager() {
     return mReactNativeHost;
   }
 
-  
-private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
-    @Override
-    public boolean getUseDeveloperSupport() {
-      return BuildConfig.DEBUG;
-    }
 
-    @Override
-    protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-          new FBSDKPackage(mCallbackManager)
-      );
-    }
-};
-  
-@Override
-  public void onCreate() {
-    super.onCreate();
-    SoLoader.init(this, /* native exopackage */ false);
-    AppEventsLogger.activateApp(this);
-  }
+
 }
