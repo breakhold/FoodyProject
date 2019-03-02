@@ -3,6 +3,7 @@ import axios from 'axios';
 import {LOGIN_CHANGE,LOGIN_WITH_FACEBOOK_SUCCESS,LOGIN_USER,LOGIN_USER_SUCCESS, LOGIN_USER_FAILED, REGISTER_CREATE_FAILED, REGISTER_CREATE_SUCCESS} from './types';
 import { navigate } from '../Services/Navigator';
 import qs from 'qs';
+
 import {LOGIN_SERVICE_URL,LOGIN_FACEBOOK_SERVICE_URL} from '../ApiConstants';
 
 export const LoginWithFacebook = ({email,name,surname}) => {
@@ -30,6 +31,7 @@ export const LoginWithFacebook = ({email,name,surname}) => {
   };
   
   };
+
 export const LoginChanged = ({ props, value }) => {
   return (dispatch) => {
     dispatch({
@@ -74,6 +76,7 @@ export const LoginMember=({username,password})=>{
       dispatch({
         type:LOGIN_USER_FAILED
       });
+      console.log(error);
 
     });
   }

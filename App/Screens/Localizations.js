@@ -17,7 +17,16 @@ let strings = new LocalizedStrings({
    continue:"Continue",
    infoNullUsername:"Please write your username",
    infoNullPassword:"Please write your password",
-   infoWrongUsernameAndPassword:"Your username or password is wrong"
+   infoWrongUsernameAndPassword:"Your username or password is wrong",
+   man:"Man",
+   woman:"Woman",
+   sex:"Sex",
+   birthDate:'Birth Date',
+   selectYourBirtDay: 'Select Your Birth Date',
+   city:'City',
+   phone:'Phone number',
+   finish:'Finish'
+
 
  },
  "en":{
@@ -32,8 +41,15 @@ let strings = new LocalizedStrings({
     continue:"Continue",
     infoNullUsername:"Please write your username",
    infoNullPassword:"Please write your password",
-   infoWrongUsernameAndPassword:"Your username or password is wrong"
-
+   infoWrongUsernameAndPassword:"Your username or password is wrong",
+   man:"Man",
+   woman:"Woman",
+   sex:"Sex",
+   birthDate:'Birth Date',
+   selectYourBirtDay: 'Select Your Birth Date',
+   city:'City',
+    phone:'Phone number',
+    finish:'Finish'
 
   },
   "tr":{
@@ -48,7 +64,16 @@ let strings = new LocalizedStrings({
     continue:"Devam Et",
     infoNullUsername:"Lütfen kullanıcı adınızı giriniz",
    infoNullPassword:"Lütfen şifrenizi giriniz",
-   infoWrongUsernameAndPassword:"Kullanıcı adınız veya şifreniz yanlış"
+   infoWrongUsernameAndPassword:"Kullanıcı adınız veya şifreniz yanlış",
+   man:"Erkek",
+   woman:"Kadın",
+   sex:"Cinsiyet",
+   birthDate:'Doğum Tarihi',
+   selectYourBirtDay: 'Doğum tarihinizi seçiniz',
+   city:'Şehir',
+   phone:'Telefon numarası',
+   finish:'Bitir'
+
 
 
   },

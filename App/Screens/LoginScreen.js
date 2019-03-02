@@ -117,13 +117,11 @@ _postLogin=async({email,surname,name})=>{
   handleFacebookLogin () {
     var _this=this;
     let result1=null;
-    LoginManager.logInWithReadPermissions(['public_profile', 'email', 'user_friends']).then(
-      
+    LoginManager.logInWithReadPermissions(['public_profile', 'email', 'user_friends']).then(  
       function (result) {
         if (result.isCancelled) {
           console.log('Login cancelled')
-        } else {
-       
+        } else {       
           console.log('Login success with permissions: ' + result.grantedPermissions.toString())
           AccessToken
         .getCurrentAccessToken()
@@ -232,7 +230,9 @@ _postLogin=async({email,surname,name})=>{
 
                 <Text style={{ fontFamily: 'Quicksand-Regular', color: '#fff' }}>
                   {strings.signUp}
+
                 </Text>
+
               </Button>
 
             </Form>
@@ -242,10 +242,12 @@ _postLogin=async({email,surname,name})=>{
 
 
             <Form style={{ flexDirection: 'row', paddingTop:10,justifyContent: "center",flex:0.3 }}>
+
             <TouchableOpacity onPress={this.handleFacebookLogin.bind(this)} >
               <Icon color='black' style={{ color: '#fff', paddingRight: '20%' }} bordered name='logo-facebook' />
             </TouchableOpacity >
             <TouchableOpacity onPress={this.LoginWithFacebook1.bind(this)} >
+
               <Icon color='black' style={{ color: '#fff' }} bordered name='logo-google' />
               </TouchableOpacity >
             </Form>
