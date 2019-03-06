@@ -25,7 +25,13 @@ let strings = new LocalizedStrings({
    selectYourBirtDay: 'Select Your Birth Date',
    city:'City',
    phone:'Phone number',
-   finish:'Finish'
+   finish:'Finish',
+   sendAgain:'Send again',
+   phoneConfirm:'Phone confirm',
+  phoneConfirmMessage:'Please Enter the Confirmation Code You Received',
+  phoneConfirmButtonText:'Confirm',
+  confirmCode:'Confirmation code',
+  phone:'+1 555 555 5555',
 
 
  },
@@ -49,7 +55,14 @@ let strings = new LocalizedStrings({
    selectYourBirtDay: 'Select Your Birth Date',
    city:'City',
     phone:'Phone number',
-    finish:'Finish'
+    finish:'Finish',
+    sendAgain:'Send again',
+    phoneConfirm:'Phone confirm',
+  phoneConfirmMessage:'Please Enter the Confirmation Code You Received',
+  phoneConfirmButtonText:'Confirm',
+  confirmCode:'Confirmation code',
+  phone:'+1 555 555 5555',
+
 
   },
   "tr":{
@@ -72,7 +85,13 @@ let strings = new LocalizedStrings({
    selectYourBirtDay: 'Doğum tarihinizi seçiniz',
    city:'Şehir',
    phone:'Telefon numarası',
-   finish:'Bitir'
+   finish:'Bitir',
+   sendAgain:'Tekrar Gönder',
+   phoneConfirm:'Telefon onayı',
+   phoneConfirmMessage:'Lütfen Telefonunuza Gönderilen Onay Kodunu Giriniz',
+   phoneConfirmButtonText:'Onayla',
+   confirmCode:'Onay kodu',
+   phone:'+90 506 680 4389'
 
 
 

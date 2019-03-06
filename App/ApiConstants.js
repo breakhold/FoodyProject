@@ -5,6 +5,9 @@ Username
 Password  
 ----
 */
+export const SIGN_UP_SERVICE_URL=BASEWEBAPI+'/usercreate';
+
+export const SIGN_UP_EMAIL_CHECK_SERVICE_URL = BASEWEBAPI+'/usercreate/EmailCheck'
 export const LOGIN_SERVICE_URL= BASEWEBAPI+'/token';
 /*
 Result

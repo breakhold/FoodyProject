@@ -2,38 +2,48 @@ import React from 'react';
 import {View,StyleSheet,CheckBox,TouchableOpacity,ImageBackground,Image} from 'react-native';
 import {Container,Picker,Header,Form,Title,Content,Button,Left,Right,Body,Icon,Text,DatePicker,Item,Input} from 'native-base';
 import { connect } from 'react-redux';
-import {RegisterChanged} from '../Actions'
+import {RegisterChanged,RegisterSecondStepClick} from '../Actions'
 import LinearGradient from 'react-native-linear-gradient'
 import strings from './Localizations'
-import {RadioForm,RadioButton,RadioButtonInput,RadioButtonLabel} from 'react-native-simple-radio-button'
+import Spinner from 'react-native-loading-spinner-overlay';
 
 
-export default class SignUpSecondScreen extends React.Component {
+class SignUpSecondScreen extends React.Component {
      
+
+
+    // phoneNumberControl(value){
+    //   if(value.length<13){
+    //     this.props.RegisterChanged({props:'phoneNumber',value:value})
+    //   }
+    // }
     constructor(props){
         super(props);
         this.state = {
-          radioSelected: 1,
+          radioSelected: '',
           chosenDate: new Date(),
           isDateChosen:false,
-          selected: undefined
+          selected: undefined,
+          propsControlled:false
         }
         this.setDate = this.setDate.bind(this);
       }
       onValueChange(value) {
         this.setState({
-          selected: value
+          selected: value //sehir icin
         });
+        this.props.RegisterChanged({props:'City',value:value})
       }
 
     
       setDate(newDate) {
         this.setState({ chosenDate: newDate,isDateChosen:true });
-        
+        this.props.RegisterChanged({props:'birthDate',value:newDate})
       }
     
     
       radioClick(id) {
+        this.props.RegisterChanged({props:'sex',value:id})
         this.setState({
           radioSelected: id
         })
@@ -48,9 +58,9 @@ export default class SignUpSecondScreen extends React.Component {
                 
             <DatePicker
                 // defaultDate={new Date(2018, 4, 4)}
-                minimumDate={new Date(2018, 1, 1)}
+                minimumDate={new Date(1950, 1, 1)}
                 maximumDate={new Date(2018, 12, 31)}
-                locale={"tr"}
+                locale={"tr"}//burasi telefon diline gore duzenlenecek
                 timeZoneOffsetInMinutes={undefined}
                 modalTransparent={false}
                 animationType={"fade"}
@@ -68,17 +78,55 @@ export default class SignUpSecondScreen extends React.Component {
           );
           
       }
-      
+      registerclick(){
+        const {sex,birthDate,phoneNumber,City} = this.props;
+        console.log(sex)
+        this.props.RegisterSecondStepClick({sex,birthDate,phoneNumber,City})
+      }
+
+      renderFinishButton(){
+       
+        if(this.state.propsControlled==false){
+          return(
+            <Button iconRight style={{backgroundColor:'#48009A'}}  onPress={this.registerclick.bind(this) } rounded >
+            <Text textStyle={{paddingLeft:'10%'}} style={{fontFamily:'Quicksand-Regular',color:'#fff'}}>
+              {strings.finish}
+            </Text>
+            <Icon name='arrow-round-forward'/>
+            </Button>
+          )
+        }else{
+          return(
+            <Button disabled iconRight style={{backgroundColor:'#8a80ff'}}   rounded >
+            <Text textStyle={{paddingLeft:'10%'}} style={{fontFamily:'Quicksand-Regular',color:'#fff'}}>
+              {strings.finish}
+            </Text>
+            <Icon name='arrow-round-forward'/>
+            </Button>
+          );
+        }
+      }
+      renderSpinner()
+  {
+    if(this.props.loading){
+      return (<Spinner
+        visible={true}
+        overlayColor={'rgba(0, 0, 0, 0.65)'}
+        size="large"
+        animation="fade"
+      />);
+    }
+    else{
+      return (<Spinner
+        visible={false}
+        overlayColor={'rgba(0, 0, 0, 0.65)'}
+        size="large"
+        animation="fade"
+      />);
+    }
+  }
     render() {
-        const products = [{
-            id: 1,
-            value: 'kiz'
-          },
-          {
-            id: 2,
-            value: 'erkek'
-          },
-          ];
+        
       return (
         
 
@@ -90,7 +138,7 @@ export default class SignUpSecondScreen extends React.Component {
      style={{flexDirection:'row',alignSelf:'flex-end'}}
   >
    </Image>
-  
+        {this.renderSpinner}
         
         
         <View  style={{flex:0.095,alignItems:'center'}}>
@@ -203,8 +251,13 @@ export default class SignUpSecondScreen extends React.Component {
           <Item style={{borderColor:'#000000',marginRight:'4%'}}  >    
           
           <Input 
+          
           style={{fontFamily:'Quicksand-Regular',paddingLeft:'5%',textAlign:"left",color:'#000'}}
-          phone placeholderTextColor='#383838' placeholder='+90 506 680 4389'/>
+          keyboardType='phone-pad' placeholderTextColor='#383838' placeholder={strings.phone}
+          
+
+          value={this.props.phoneNumber} onChangeText={phoneNumber1 => this.props.RegisterChanged({ props: 'phoneNumber', value: phoneNumber1 })} placeholder={strings.phone}
+          />
           </Item>
           
           
@@ -224,12 +277,8 @@ export default class SignUpSecondScreen extends React.Component {
             {/* <View style={{flex:0.10}}/> */}
             <View style={{flex:0.1}}></View>
             <View style={{flex:0.2,flexDirection:'row',justifyContent:"flex-end",paddingRight:'5%',paddingTop:'2%'}}>
-            <Button iconRight style={{backgroundColor:'#48009A'}}  onPress={()=> this.props.navigation.navigate("SignUpSecond")} rounded >
-            <Text textStyle={{paddingLeft:'10%'}} style={{fontFamily:'Quicksand-Regular',color:'#fff'}}>
-              {strings.finish}
-            </Text>
-            <Icon name='arrow-round-forward'/>
-            </Button></View>
+            {this.renderFinishButton()}
+            </View>
           
            
 
@@ -253,3 +302,21 @@ export default class SignUpSecondScreen extends React.Component {
    },
    
   });
+
+  const mapStateToProps = ({ RegisterResponse }) => {
+    const {  sex,
+      birthDate,
+      phoneNumber,
+      City,
+      spinner} = RegisterResponse;
+    return {
+      sex,
+    birthDate,
+    phoneNumber,
+    City,
+    spinner
+    };
+  };
+  
+  
+  export default connect(mapStateToProps, { RegisterChanged,RegisterSecondStepClick})(SignUpSecondScreen)

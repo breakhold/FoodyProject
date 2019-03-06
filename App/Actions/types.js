@@ -6,8 +6,10 @@ export const LOGIN_USER_FAILED='login_user_failed';
 export const REGISTER_CHANGE='register_change';
 export const REGISTER_CREATE='register_create';
 export const REGISTER_EVENT_EMPTY='register_even_empty';
+export const REGISTER_FIRST_SUCCEED='register_first_succeed'
 export const REGISTER_CREATE_FAILED='register_create_failed';
 export const REGISTER_CREATE_FAILED_EMAIL='register_create_failed_email';
+export const USER_SECOND_STEP_STARTED='user_second_step_started';
 
 
 export const MEMBER_INFORMATION='member_information';

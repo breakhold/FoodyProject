@@ -8,6 +8,7 @@ import ReduxThunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import {setNavigator} from './App/Services/Navigator';
 import reducers from './App/Reducers'
+import {SharedElementRenderer} from 'react-native-motion'
  const AppContainer = createAppContainer(SwitchNavigator);
 
 export default class App extends React.Component {
@@ -15,7 +16,10 @@ export default class App extends React.Component {
       const store  = createStore(reducers,{},applyMiddleware(ReduxThunk));
     return (
       <Provider store={store}>
-          <AppContainer ref={nav => {setNavigator(nav);}}/>
+        
+         <AppContainer ref={nav => {setNavigator(nav);}}/>
+ 
+
       </Provider>
     )
   }

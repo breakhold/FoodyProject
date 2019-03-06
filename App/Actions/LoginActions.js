@@ -43,7 +43,7 @@ export const LoginChanged = ({ props, value }) => {
   };
 
 export const LoginMember=({username,password})=>{
-  
+  console.log(username)
   return(dispatch)=>{
     dispatch({
       type:LOGIN_USER
@@ -56,11 +56,12 @@ export const LoginMember=({username,password})=>{
       })
     }
     else{
-    axios.post(LOGIN_SERVICE_URL,{userName:username,Password:password}).then((response)=>{
-     
+    axios.post(LOGIN_SERVICE_URL,{Username:username,Password:password}).then((response)=>{
+      console.log(response.data.message)
       if(response.data.isSuccess){
         AsyncStorage.setItem('Id',response.data.userId.toString());
         AsyncStorage.setItem('token',response.data.token);
+        console.log("login  "+response.data)
         dispatch({
           type:LOGIN_USER_SUCCESS
         });
