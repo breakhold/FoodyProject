@@ -117,7 +117,7 @@ _postLogin=async({email,surname,name})=>{
   handleFacebookLogin () {
     var _this=this;
     let result1=null;
-    LoginManager.logInWithReadPermissions(['public_profile', 'email', 'user_friends']).then(  
+    LoginManager.logInWithReadPermissions(['public_profile', 'email']).then(  
       function (result) {
         if (result.isCancelled) {
           console.log('Login cancelled')
@@ -138,7 +138,7 @@ _postLogin=async({email,surname,name})=>{
               let email  = result["email"].toString();
               let name=result["first_name"].toString();
               let surname=result["last_name"].toString();
-              let photo=result["picture.type(large)"].toString();
+              // let photo=result["picture.type(large)"].toString();
               console.log(name+surname);
                console.log(email)
                console.log(result);

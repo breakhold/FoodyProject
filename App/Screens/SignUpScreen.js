@@ -1,8 +1,6 @@
 import React from 'react';
-
 import { View, StyleSheet } from 'react-native';
 import { Container, Header, Form, Title, Content, Button, Left, Right, Body, Text,Icon,Item, Input } from 'native-base';
-
 import { connect } from 'react-redux';
 import { RegisterChanged,RegisterFirstStepClick} from '../Actions'
 import LinearGradient from 'react-native-linear-gradient'
@@ -14,7 +12,7 @@ import strings from './Localizations'
 class SignUpScreen extends React.Component {
 
   _registerFirstStep=async()=>{
-    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
+    let reg = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/ ;
 
     if(this.props.name=='' || this.props.email=='' || this.props.password=='' || this.props.surname==''){
       this.dropdown.alertWithType('warn', 'Uyarı', "Tüm alanları eksiksiz doldurmanız daha iyi bir uygulama deneyimi kazandırır");
@@ -36,7 +34,6 @@ class SignUpScreen extends React.Component {
   renderButton(){
     if(this.props.name!='' && this.props.email!='' && this.props.password!='' && this.props.surname!='' && this.props.password.length>5){
       return (
-
         <Button iconRight style={{ backgroundColor: '#48009A' }} onPress={this._registerFirstStep.bind(this)} rounded >
         <Text style={{ color: '#fff',fontFamily: 'Quicksand-Regular', }}>
                       {strings.continue}
@@ -79,23 +76,17 @@ class SignUpScreen extends React.Component {
             <Text style={{ fontSize: 30,fontWeight:'500', fontFamily: 'Quicksand-Regular' }}>
               {strings.signUp.toUpperCase()}
             </Text>
-
           </Item>
           <View style={{ flex: 0.05 }}>
         
-
           </View>
       
           <KeyboardAwareScrollView style={{  flex: 0.35, paddingTop: '5%', paddingLeft: '8%', paddingRight: '12%' }}>
             <Item style={{ borderColor: '#000000' }} floatingLabel>
        
-              <Input     onFocus={(event) => {
-        // `bind` the function if you're using ES6 classes
-        this._scrollToInput(ReactNative.findNodeHandle(event.target))
-      }}
+              <Input     
                 style={styles.textInput} value={this.props.name} onChangeText={name1 => this.props.RegisterChanged({ props: 'name', value: name1 })}
                 placeholderTextColor='#000000' placeholder={strings.name} />
-
 
             </Item>
             <Item style={{ borderColor: '#000000' }}>
@@ -115,10 +106,7 @@ class SignUpScreen extends React.Component {
             </Item>
 
             <Item style={{ borderColor: '#000000' }}  >
-              <Input onFocus={(event) => {
-        // `bind` the function if you're using ES6 classes
-        this._scrollToInput(ReactNative.findNodeHandle(event.target))
-      }}
+              <Input 
                 style={styles.textInput}
                 secureTextEntry placeholderTextColor='#000000' value={this.props.password} onChangeText={password1 => this.props.RegisterChanged({ props: 'password', value: password1 })} placeholder={strings.password} />
             </Item>

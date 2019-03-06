@@ -5,7 +5,8 @@ import { navigate } from '../Services/Navigator';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import FoodyListItem  from '../Component/FoodyListItem'
 import TabItem from '../Component/TabItem'
-export default class HomeScreen extends React.Component {
+import { SharedElement } from 'react-native-motion';
+export default class HomeSecond extends React.Component {
   _signOutAsync = async () => {
     await AsyncStorage.clear();
     this.props.navigation.navigate('Login')
@@ -31,20 +32,20 @@ export default class HomeScreen extends React.Component {
           </TouchableOpacity>
           </Right>
         </Header>
-        <Content>
-        <ScrollView horizontal>
+        <Content style={{flex:1}}>
+        <View>
        
-       <TabItem/>   
-       <TabItem/>  
-       <TabItem/>  
+          <ScrollView horizontal>
        
-   </ScrollView>
-        <ScrollView style={{flex:1,marginTop:5}} >
-                <FoodyListItem/>   
-                <FoodyListItem/>  
-                <FoodyListItem/>  
-                 
-            </ScrollView>
+        <TabItem/>   
+        <TabItem/>  
+        <TabItem/>  
+        
+    </ScrollView>
+       
+        
+        </View>
+       
          
           {/* <Button transparent onPress={this._signOutAsync}>
             <Icon name='add' />
