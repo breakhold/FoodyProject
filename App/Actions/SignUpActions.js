@@ -1,10 +1,12 @@
 import { REGISTER_CHANGE, REGISTER_CREATE, REGISTER_CREATE_SUCCESS, USER_SECOND_STEP_STARTED,REGISTER_FIRST_SUCCEED,REGISTER_EVENT_SECOND_EMPTY,REGISTER_EVENT_EMPTY, REGISTER_CREATE_FAILED_EMAIL } from './types'
 import { navigate } from '../Services/Navigator';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage,Alert } from 'react-native';
+import {SIGN_UP_SERVICE_URL,SIGN_UP_EMAIL_CHECK_SERVICE_URL} from '../ApiConstants';
+import axios from 'axios';
 
 
 export const RegisterChanged = ({ props, value }) => {
-    console.log(props + "  " + value)
+    // console.log(props + "  " + value)
     return (dispatch) => {
         dispatch({
             type: REGISTER_CHANGE,
@@ -30,7 +32,13 @@ export const RegisterFirstStepClick = ({ name, surname, password, email }) => {
             'email':email
         };
         console.log(itemsWillBeSave)
-        AsyncStorage.setItem('userFirstScreenInfo', JSON.stringify(itemsWillBeSave))
+
+
+
+        axios.post(SIGN_UP_EMAIL_CHECK_SERVICE_URL,{Email:email}).then((response)=>{
+            if(response.data.isSuccess){
+              
+              AsyncStorage.setItem('userFirstScreenInfo', JSON.stringify(itemsWillBeSave))
             .then(() => {
                 console.log('It was saved successfully')
             })
@@ -38,6 +46,16 @@ export const RegisterFirstStepClick = ({ name, surname, password, email }) => {
                 console.log('There was an error saving the product')
             })
         navigate("SignUpSecond")
+            }
+            else{
+              Alert.alert(response.data.message);
+               
+         
+            }
+        });
+
+
+       
     };
 }
 
@@ -75,6 +93,22 @@ export const RegisterSecondStepClick = ({ sex,birthDate,phoneNumber,City}) => {
             AsyncStorage.setItem('userSecondScreenInfo',JSON.stringify(itemsWillBeSave2)).then(
                 AsyncStorage.getItem('userSecondScreenInfo').then((items) =>{
                     var item2 = JSON.parse(items);
+                    axios.post(SIGN_UP_SERVICE_URL,{Email:item2.email,Name:item2.name,Surname:item2.surname,BirthDate:item2.birthDate,Password:item2.password,Sex:item2.sex}).then((response)=>{
+                        if(response.data.isSuccess){
+                          AsyncStorage.setItem('Id',response.data.userId.toString());
+                          AsyncStorage.setItem('token',response.data.token);
+                          console.log("token degeri: "+ response.data.token)
+                          navigate('Home');
+                        }
+                        else{
+                          Alert.alert(response.data.message);
+                           
+                     
+                        }
+                      }).catch(function(error){
+                          console.log(response.error);
+                   
+                      });
                     console.log(item2)
 
                 })

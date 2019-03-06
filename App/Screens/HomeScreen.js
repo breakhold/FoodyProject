@@ -19,7 +19,7 @@ export default class HomeScreen extends React.Component {
         <Container>
         <Header>
           <Left>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>this._signOutAsync()}>
             <Icon name="playlist-add" type="MaterialIcons" />
             </TouchableOpacity>
           </Left>
@@ -34,7 +34,7 @@ export default class HomeScreen extends React.Component {
         <Content>
         <ScrollView horizontal>
        
-       <TabItem/>   
+       <TabItem />   
        <TabItem/>  
        <TabItem/>  
        
