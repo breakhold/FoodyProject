@@ -14,6 +14,7 @@ export const LoginWithFacebook = ({email,name,surname}) => {
     if(email){
       axios.post(LOGIN_FACEBOOK_SERVICE_URL,{Email:email,Name:name,Surname:surname}).then((response)=>{
          if(response.data.isSuccess){
+           console.log(response.data+ "facebook login basarili")
            AsyncStorage.setItem('Id',response.data.userId.toString());
            AsyncStorage.setItem('token',response.data.token);
            navigate('Home');

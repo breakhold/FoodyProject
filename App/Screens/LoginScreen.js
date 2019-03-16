@@ -1,13 +1,13 @@
 import React from 'react';
-import { View,Alert, StyleSheet, findNodeHandle,TouchableOpacity } from 'react-native';
-import { Container, Item, Input, Header, Title, Content, Button, Left, Right, Thumbnail, Body, Icon, Text, Image, Form, Row } from 'native-base';
+import { View,Alert, StyleSheet, findNodeHandle,TouchableOpacity,Image } from 'react-native';
+import { Container, Label,Item, Input, Header, Title, Content, Button, Left, Right, Thumbnail, Body, Icon, Text, Form, Row } from 'native-base';
 import { connect } from 'react-redux'
 import { LoginChanged, LoginMember,LoginWithFacebook } from '../Actions';
 import Spinner from 'react-native-loading-spinner-overlay';
 import LinearGradient from 'react-native-linear-gradient';
 import Hr from "react-native-hr-component";
 import strings from './Localizations';
-import {AccessToken,LoginManager,GraphRequestManager ,GraphRequest} from 'react-native-fbsdk';
+import {AccessToken,LoginButton,LoginManager,GraphRequestManager ,GraphRequest} from 'react-native-fbsdk';
 import Fonts from '../Utils/Fonts'
 import axios from 'axios';
 
@@ -37,7 +37,7 @@ class LoginScreen extends React.Component {
 renderInfoText(){
   if(this.props.isTried && this.props.password && this.props.username){
     return(
-      <Text style={{fontFamily:'Quicksand-Regular',color:'#fff'}}>{strings.infoWrongUsernameAndPassword}</Text>
+      <Text style={{fontFamily:'Quicksand-Regular',color:'#000'}}>{strings.infoWrongUsernameAndPassword}</Text>
     );
   }
   
@@ -54,13 +54,23 @@ renderInfoText(){
 
       return (
 
-        <Item style={{ borderColor: '#fff' }}>
+        <Item  style={{borderColor:'blue',borderRadius:5,marginLeft:'5%',marginRight:'5%'
+,shadowColor: "#000",
+shadowOffset: {
+	width: 4,
+	height: 8,
+},
+shadowOpacity: 1.58,
+shadowRadius: 16.00,elevation:5,
+borderWidth:1
+}} floatingLabel regular >
+              <Label style={{bottom:15,color:'#4C2BDC',marginLeft:5,fontSize:14}}>{strings.password}</Label>
           <Input
 
             autoFocus={true}
-            style={{ fontFamily: 'Quicksand-Regular', paddingLeft: '10%', textAlign: "center", color: '#fff' }}
-            secureTextEntry value={this.props.password} onChangeText={password1 => this.props.LoginChanged({ props: 'password', value: password1 })} placeholderTextColor='#fff' placeholder={strings.password} />
-          <Icon style={{ color: '#fff' }} name="alert" />
+            style={{ fontFamily: 'Quicksand-Regular', paddingLeft: '10%', color: '#000' }}
+            secureTextEntry value={this.props.password} onChangeText={password1 => this.props.LoginChanged({ props: 'password', value: password1 })}  />
+          <Icon style={{ color: '#4C2BDC' }} name="alert" />
         </Item>
       );
     }
@@ -68,11 +78,22 @@ renderInfoText(){
 
       return (
 
-        <Item style={{ borderColor: '#fff' }}>
+        <Item  style={{borderColor:'blue',borderRadius:5,marginLeft:'5%',marginRight:'5%'
+,shadowColor: "#000",
+shadowOffset: {
+	width: 4,
+	height: 8,
+},
+shadowOpacity: 1.58,
+shadowRadius: 16.00,elevation:5,
+borderWidth:1
+}} floatingLabel regular >
+              <Label style={{bottom:15,color:'#4C2BDC',marginLeft:5,fontSize:14}}>{strings.password}</Label>
+              
           <Input
 
-            style={{ fontFamily: 'Quicksand-Regular', textAlign: "center", color: '#fff' }}
-            secureTextEntry value={this.props.password} onChangeText={password1 => this.props.LoginChanged({ props: 'password', value: password1 })} placeholderTextColor='#fff' placeholder={strings.password} />
+            style={{ fontFamily: 'Quicksand-Regular', color: '#000' }}
+            secureTextEntry value={this.props.password} onChangeText={password1 => this.props.LoginChanged({ props: 'password', value: password1 })}  />
 
         </Item>
       );
@@ -82,22 +103,42 @@ renderInfoText(){
     if (this.props.isTried && !this.props.username) {
       return (
 
-        <Item >
+        <Item  style={{borderColor:'blue',borderRadius:5,marginLeft:'5%',marginRight:'5%'
+,shadowColor: "#000",
+shadowOffset: {
+	width: 4,
+	height: 8,
+},
+shadowOpacity: 1.58,
+shadowRadius: 16.00,elevation:5,
+borderWidth:1
+}} floatingLabel regular >
+              <Label style={{bottom:15,color:'#4C2BDC',marginLeft:5,fontSize:14}}>{strings.username}</Label>
           <Input
             autoFocus={true}
-            style={{ fontFamily: 'Quicksand-Regular', paddingLeft: '10%', textAlign: "center", color: '#fff', }}
-            value={this.props.username} onChangeText={username1 => this.props.LoginChanged({ props: 'username', value: username1 })} placeholderTextColor='#fff' placeholder={strings.username} />
-          <Icon style={{ color: '#fff' }} name="alert" />
+            style={{ fontFamily: 'Quicksand-Regular', paddingLeft: '10%', color: '#fff', }}
+            value={this.props.username} onChangeText={username1 => this.props.LoginChanged({ props: 'username', value: username1 })}  />
+          <Icon style={{ color: '#4C2BDC'}} name="alert" />
         </Item>
       );
     }
     else {
       return (
-        <Item >
+        <Item  style={{borderColor:'blue',borderRadius:5,marginLeft:'5%',marginRight:'5%'
+,shadowColor: "#000",
+shadowOffset: {
+	width: 4,
+	height: 8,
+},
+shadowOpacity: 1.58,
+shadowRadius: 16.00,elevation:5,
+borderWidth:1
+}} floatingLabel regular >
+              <Label style={{bottom:15,color:'#4C2BDC',marginLeft:5,fontSize:14}}>{strings.username}</Label>
           <Input
 
-            style={{ fontFamily: 'Quicksand-Regular', textAlign: "center", color: '#fff', }}
-            value={this.props.username} onChangeText={username1 => this.props.LoginChanged({ props: 'username', value: username1 })} placeholderTextColor='#fff' placeholder={strings.username} />
+            style={{ fontFamily: 'Quicksand-Regular', color: '#000', }}
+            value={this.props.username} onChangeText={username1 => this.props.LoginChanged({ props: 'username', value: username1 })}  />
 
         </Item>
       );
@@ -109,6 +150,7 @@ renderInfoText(){
     this.props.LoginMember({ username, password });
   };
 _postLogin=async({email,surname,name})=>{
+  console.log(email,surname,name)
   this.props.LoginWithFacebook({email,surname,name});
 }
 
@@ -201,59 +243,83 @@ _postLogin=async({email,surname,name})=>{
   render() {
     return (
 
-      <Container style={{ justifyContent: "center" }}>
-        <LinearGradient colors={['blue', 'red']} style={{ flex: 1 }} useAngle={true} angle={-45} angleCenter={{ x: 0.5, y: 0.5 }}>
-          <Content style={{ paddingTop: '20%', marginLeft: '10%', marginRight: '10%', flex: 1 }}>
-            <Form style={{ flex: 0.1 }}>
-              <Thumbnail style={{ alignSelf: "center" }} large source={{ uri: 'https://lh5.googleusercontent.com/p/AF1QipP58meJjsw3dokiDtVyZNozyUiuvHIW0W0ak3cU=w319-h160-k-no' }} />
-            </Form>
-            <Form style={{ paddingTop: '20%', flex: 0.1 }}>
+      <Container style={{ flex:1}}>
+         
+         <Image style={{ width:'100%'}} source={require('../src/LoginScreen/Vector.png')} />
 
+<Image style={{ position:'absolute',marginTop:7.65,  width:'100%'}} source={require('../src/LoginScreen/Vector2.png')} />
+ 
+<Image style={{position:'absolute',marginTop:34.44, width:'100%'}} source={require('../src/LoginScreen/Vector1.png')} />
+<View style={{alignItems:'center'}}>
+  <Text  style={{color:'#4C2BDC',marginTop:'4%',fontFamily:'QuickSand',fontWeight:'bold',fontSize:25}}>
+    Hosgeldiniz
+  </Text>
+  <Text style={{fontSize:16,marginTop:'2%',color:'#4C2BDC',fontFamily:'QuickSand'}}>
+    Hemen Giris Yapiniz
+  </Text>
 
-              {this.renderUsernameText()}
-              {this.renderUserPasswordText()}
-              <View style={{ alignSelf: 'center', paddingTop: '3%' }}>
-                {this.renderInfoText()}
-              </View>
-              {this.renderSpinner()}
-            </Form>
        
-            <Form style={{ flexDirection: 'row', paddingTop: '15%', paddingLeft: '2%', paddingRight: '2%', flex: 0.2,justifyContent:'center' }}>
-              <Button style={{ borderColor: '#fff' }} bordered rounded onPress={this._signIn.bind(this)} >
 
 
-                <Text style={{ fontFamily: 'Quicksand-Regular', color: '#fff' }}>
-                  {strings.signIn}
-                </Text>
-              </Button>
-              <Button style={{ borderColor: '#fff',marginLeft:'3%' }} bordered rounded onPress={() => this.props.navigation.navigate("SignUp")}>
+        
+  
 
-                <Text style={{ fontFamily: 'Quicksand-Regular', color: '#fff' }}>
-                  {strings.signUp}
+  
+  </View>
+  <View style={{marginTop:'10s%'}}>
+  </View>
+              {this.renderUsernameText()}
+              <View style={{marginTop:'10%'}}/>
+              {this.renderUserPasswordText()}
+              
+                {this.renderInfoText()}
 
-                </Text>
+              {this.renderSpinner()}
+              <View style={{marginTop:'10%'}}>
 
-              </Button>
+</View>
+              <Button onPress={this._signIn.bind(this)} style={{borderRadius:5,backgroundColor:'#4C2BDC',width:'80%',justifyContent:'center',marginLeft:'10%',
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.32,
+        shadowRadius: 5.46,
+        
+        elevation: 9,
+        borderWidth:1}}>
+              <Text style={{fontFamily:'QuickSand',alignContent:"center"}}>
+              {strings.signIn}
+              </Text>
 
-            </Form>
-            <Form style={{ paddingLeft: '5%', paddingRight: '2%', flex: 0.05, paddingTop: 30, paddingBottom: 30 }}>
-              <Hr lineColor="#eee" width={1} text={strings.or} textStyles={styles.customStylesHere} />
-            </Form>
+            </Button>
+            <View style={{marginTop:'5%'}}/>
+
+            <View style={{flexDirection:'row',fontSize:14,justifyContent:'center'}} >
+<Text style={{fontSize:14,color:'#4C2BDC'}}>
+            Hesabiniz yok mu </Text><TouchableOpacity onPress={() => this.props.navigation.navigate("SignUp")}>
+              <Text style={{fontWeight:'500',fontSize:14,color:'#4C2BDC'}}>
+              {strings.signUp}
+              </Text>
+            </TouchableOpacity>
+</View>
+
+<View style={{marginLeft:'15%',marginRight:'15%',marginTop:5}} >
+<Hr lineColor="#c9bff4" width={1} text={strings.or} textStyles={{fontWeight: "bold",
+    color: "#4C2BDC",
+    fontFamily: 'Quicksand-Regular'}}  />
+</View>
+<View style={{marginTop:'5%'}}>
+
+</View>
+<View style={{alignItems:'center'}}>
+<LoginButton onPress={this.handleFacebookLogin.bind(this)} />
+</View>
 
 
-            <Form style={{ flexDirection: 'row', paddingTop:10,justifyContent: "center",flex:0.3 }}>
+               
 
-            <TouchableOpacity onPress={this.handleFacebookLogin.bind(this)} >
-              <Icon color='black' style={{ color: '#fff', paddingRight: '20%' }} bordered name='logo-facebook' />
-            </TouchableOpacity >
-            <TouchableOpacity onPress={this.LoginWithFacebook1.bind(this)} >
-
-              <Icon color='black' style={{ color: '#fff' }} bordered name='logo-google' />
-              </TouchableOpacity >
-            </Form>
-            {/* <Text>{this.props.Facebookname}</Text> */}
-          </Content>
-        </LinearGradient>
       </Container>
 
     );
