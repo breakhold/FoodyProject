@@ -15,6 +15,8 @@ import FoodyScreen from './Screens/FoodyScreen';
 import SignUpThirdScreen from './Screens/SignUpThirdScreen'
 import HomeSecond from './Screens/HomeSecond'
 import RestourantDetailScreen from './Screens/RestourantDetailScreen'
+
+
 // export const RootStack = createStackNavigator(
 //     {
 //       Home: HomeScreen,
@@ -119,6 +121,7 @@ const TabNavigator = createBottomTabNavigator({
 
 export const SwitchNavigator = createSwitchNavigator({
   //  Home:HomeStack,
+ SignUp:SignUpScreen,
   AuthLoading:AuthLoadingScreen,
   Login: LoginStack,
   App: TabNavigator
