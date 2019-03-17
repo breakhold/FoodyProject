@@ -3,6 +3,11 @@ package com.foody;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
+import com.BV.LinearGradient.LinearGradientPackage;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 
@@ -48,10 +53,12 @@ protected static CallbackManager getCallbackManager() {
    
 return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new ReactNativeLocalizationPackage(),
             new VectorIconsPackage(),
-            new RNGestureHandlerPackage(),
+            new ReactNativeLocalizationPackage(),
             new LinearGradientPackage(),
+            new RNGestureHandlerPackage(),
+         
+       
       new FBSDKPackage(mCallbackManager)
       );
 

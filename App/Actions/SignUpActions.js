@@ -1,4 +1,4 @@
-import { REGISTER_CHANGE, REGISTER_CREATE, REGISTER_CREATE_SUCCESS, USER_SECOND_STEP_STARTED,REGISTER_FIRST_SUCCEED,REGISTER_EVENT_SECOND_EMPTY,REGISTER_EVENT_EMPTY, REGISTER_CREATE_FAILED_EMAIL } from './types'
+import { REGISTER_CHANGE, REGISTER_CREATE, REGISTER_CREATE_SUCCESS,REGISTER_FINISH_SPINNER, USER_SECOND_STEP_STARTED,REGISTER_FIRST_SUCCEED,REGISTER_EVENT_SECOND_EMPTY,REGISTER_EVENT_EMPTY, REGISTER_CREATE_FAILED_EMAIL } from './types'
 import { navigate } from '../Services/Navigator';
 import { AsyncStorage,Alert } from 'react-native';
 import {SIGN_UP_SERVICE_URL,SIGN_UP_EMAIL_CHECK_SERVICE_URL} from '../ApiConstants';
@@ -22,9 +22,7 @@ export const RegisterFirstStepClick = ({ name, surname, password, email }) => {
             dispatch({
                 type: REGISTER_FIRST_SUCCEED
             });
-       
-   
-       
+
         const itemsWillBeSave ={
             'name':name,
             'surname':surname,
@@ -32,8 +30,6 @@ export const RegisterFirstStepClick = ({ name, surname, password, email }) => {
             'email':email
         };
         console.log(itemsWillBeSave)
-
-
 
         axios.post(SIGN_UP_EMAIL_CHECK_SERVICE_URL,{Email:email}).then((response)=>{
             if(response.data.isSuccess){
@@ -45,6 +41,11 @@ export const RegisterFirstStepClick = ({ name, surname, password, email }) => {
             .catch(() => {
                 console.log('There was an error saving the product')
             })
+            
+            dispatch({
+                type: REGISTER_FINISH_SPINNER
+            });
+
         navigate("SignUpSecond")
             }
             else{
@@ -85,11 +86,7 @@ export const RegisterSecondStepClick = ({ sex,birthDate,phoneNumber,City}) => {
             itemsWillBeSave2.email=varle.email;
 
             console.log("ikinci ")
-            console.log(itemsWillBeSave2)
-
-
-
-
+            console.log(itemsWillBeSave2);
             AsyncStorage.setItem('userSecondScreenInfo',JSON.stringify(itemsWillBeSave2)).then(
                 AsyncStorage.getItem('userSecondScreenInfo').then((items) =>{
                     var item2 = JSON.parse(items);

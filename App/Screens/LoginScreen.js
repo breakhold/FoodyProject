@@ -10,7 +10,7 @@ import strings from './Localizations';
 import {AccessToken,LoginButton,LoginManager,GraphRequestManager ,GraphRequest} from 'react-native-fbsdk';
 import Fonts from '../Utils/Fonts'
 import axios from 'axios';
-
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { navigate } from '../Services/Navigator';
 import {LOGIN_FACEBOOK_SERVICE_URL} from '../ApiConstants';
 // import strings from '../Localizations'
@@ -54,21 +54,12 @@ renderInfoText(){
 
       return (
 
-        <Item  style={{borderColor:'blue',borderRadius:5,marginLeft:'5%',marginRight:'5%'
-,shadowColor: "#000",
-shadowOffset: {
-	width: 4,
-	height: 8,
-},
-shadowOpacity: 1.58,
-shadowRadius: 16.00,elevation:5,
-borderWidth:1
-}} floatingLabel regular >
+        <Item  style={styles.inputContainer}  floatingLabel regular >
               <Label style={{bottom:15,color:'#4C2BDC',marginLeft:5,fontSize:14}}>{strings.password}</Label>
           <Input
 
             autoFocus={true}
-            style={{ fontFamily: 'Quicksand-Regular', paddingLeft: '10%', color: '#000' }}
+            style={styles.inputStyle}
             secureTextEntry value={this.props.password} onChangeText={password1 => this.props.LoginChanged({ props: 'password', value: password1 })}  />
           <Icon style={{ color: '#4C2BDC' }} name="alert" />
         </Item>
@@ -78,21 +69,12 @@ borderWidth:1
 
       return (
 
-        <Item  style={{borderColor:'blue',borderRadius:5,marginLeft:'5%',marginRight:'5%'
-,shadowColor: "#000",
-shadowOffset: {
-	width: 4,
-	height: 8,
-},
-shadowOpacity: 1.58,
-shadowRadius: 16.00,elevation:5,
-borderWidth:1
-}} floatingLabel regular >
+        <Item  style={styles.inputContainer} floatingLabel regular >
               <Label style={{bottom:15,color:'#4C2BDC',marginLeft:5,fontSize:14}}>{strings.password}</Label>
               
           <Input
 
-            style={{ fontFamily: 'Quicksand-Regular', color: '#000' }}
+            style={styles.inputStyle}
             secureTextEntry value={this.props.password} onChangeText={password1 => this.props.LoginChanged({ props: 'password', value: password1 })}  />
 
         </Item>
@@ -103,20 +85,11 @@ borderWidth:1
     if (this.props.isTried && !this.props.username) {
       return (
 
-        <Item  style={{borderColor:'blue',borderRadius:5,marginLeft:'5%',marginRight:'5%'
-,shadowColor: "#000",
-shadowOffset: {
-	width: 4,
-	height: 8,
-},
-shadowOpacity: 1.58,
-shadowRadius: 16.00,elevation:5,
-borderWidth:1
-}} floatingLabel regular >
-              <Label style={{bottom:15,color:'#4C2BDC',marginLeft:5,fontSize:14}}>{strings.username}</Label>
+        <Item  style={styles.inputContainer} floatingLabel regular >
+              <Label style={{bottom:15,color:'#4C2BDC', fontFamily:'Quicksand-Regular', marginLeft:5,fontSize:14}}>{strings.username}</Label>
           <Input
             autoFocus={true}
-            style={{ fontFamily: 'Quicksand-Regular', paddingLeft: '10%', color: '#fff', }}
+            style={styles.inputStyle}
             value={this.props.username} onChangeText={username1 => this.props.LoginChanged({ props: 'username', value: username1 })}  />
           <Icon style={{ color: '#4C2BDC'}} name="alert" />
         </Item>
@@ -124,20 +97,11 @@ borderWidth:1
     }
     else {
       return (
-        <Item  style={{borderColor:'blue',borderRadius:5,marginLeft:'5%',marginRight:'5%'
-,shadowColor: "#000",
-shadowOffset: {
-	width: 4,
-	height: 8,
-},
-shadowOpacity: 1.58,
-shadowRadius: 16.00,elevation:5,
-borderWidth:1
-}} floatingLabel regular >
-              <Label style={{bottom:15,color:'#4C2BDC',marginLeft:5,fontSize:14}}>{strings.username}</Label>
+        <Item  style={styles.inputContainer} floatingLabel regular >
+              <Label style={{bottom:15,color:'#4C2BDC',fontFamily:'Quicksand-Regular',marginLeft:5,fontSize:14}}>{strings.username}</Label>
           <Input
 
-            style={{ fontFamily: 'Quicksand-Regular', color: '#000', }}
+            style={styles.inputStyle}
             value={this.props.username} onChangeText={username1 => this.props.LoginChanged({ props: 'username', value: username1 })}  />
 
         </Item>
@@ -244,38 +208,30 @@ _postLogin=async({email,surname,name})=>{
     return (
 
       <Container style={{ flex:1}}>
-         
-         <Image style={{ width:'100%'}} source={require('../src/LoginScreen/Vector.png')} />
+  <Image style={{ width:'100%'}} source={require('../src/LoginScreen/Vector.png')} />
 
 <Image style={{ position:'absolute',marginTop:7.65,  width:'100%'}} source={require('../src/LoginScreen/Vector2.png')} />
- 
-<Image style={{position:'absolute',marginTop:34.44, width:'100%'}} source={require('../src/LoginScreen/Vector1.png')} />
+<KeyboardAwareScrollView>
 <View style={{alignItems:'center'}}>
   <Text  style={{color:'#4C2BDC',marginTop:'4%',fontFamily:'QuickSand',fontWeight:'bold',fontSize:25}}>
-    Hosgeldiniz
+    Hosgeldin
   </Text>
   <Text style={{fontSize:16,marginTop:'2%',color:'#4C2BDC',fontFamily:'QuickSand'}}>
-    Hemen Giris Yapiniz
+    Hemen Giriş Yap!
   </Text>
-
-       
-
-
-        
-  
-
-  
   </View>
-  <View style={{marginTop:'10s%'}}>
+  <View style={{marginTop:'10%'}}>
   </View>
+
+
               {this.renderUsernameText()}
-              <View style={{marginTop:'10%'}}/>
+              <View style={{marginTop:'5%'}}/>
               {this.renderUserPasswordText()}
               
                 {this.renderInfoText()}
 
               {this.renderSpinner()}
-              <View style={{marginTop:'10%'}}>
+              <View style={{marginTop:'5%'}}>
 
 </View>
               <Button onPress={this._signIn.bind(this)} style={{borderRadius:5,backgroundColor:'#4C2BDC',width:'80%',justifyContent:'center',marginLeft:'10%',
@@ -294,6 +250,7 @@ _postLogin=async({email,surname,name})=>{
               </Text>
 
             </Button>
+      
             <View style={{marginTop:'5%'}}/>
 
             <View style={{flexDirection:'row',fontSize:14,justifyContent:'center'}} >
@@ -313,10 +270,11 @@ _postLogin=async({email,surname,name})=>{
 <View style={{marginTop:'5%'}}>
 
 </View>
+
 <View style={{alignItems:'center'}}>
 <LoginButton onPress={this.handleFacebookLogin.bind(this)} />
 </View>
-
+</KeyboardAwareScrollView>
 
                
 
@@ -330,6 +288,19 @@ _postLogin=async({email,surname,name})=>{
 
 
 const styles = StyleSheet.create({
+  inputContainer:{
+    borderColor:'blue',
+    borderRadius:5,
+    marginLeft:'7%',
+    marginRight:'7%',
+    height:'10%'
+    ,
+    borderWidth:1
+
+  },
+  inputStyle:{
+    fontFamily: 'Quicksand-Regular', color: '#000' 
+  },
   mBackground: {
     backgroundColor: "#FF2F63",
     flex: 1,
@@ -350,7 +321,7 @@ const styles = StyleSheet.create({
     marginBottom: 250,
   },
   customStylesHere: {
-    fontWeight: "bold",
+    fontWeight: "600",
     color: "#fff",
     fontFamily: 'Quicksand-Regular'
   }
